@@ -1,0 +1,63 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Server index{% endblock %}
+
+{% block body %}
+    <h1>Server index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>CfgProc</th>
+                <th>CfgMem</th>
+                <th>CfgDrive</th>
+                <th>ResInt</th>
+                <th>ResExt</th>
+                <th>ResMac</th>
+                <th>ResUrl</th>
+                <th>Role</th>
+                <th>Os</th>
+                <th>PortSsh</th>
+                <th>PortFtp</th>
+                <th>Contrat</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for server in servers %}
+            <tr>
+                <td>{{ server.id }}</td>
+                <td>{{ server.name }}</td>
+                <td>{{ server.cfgProc }}</td>
+                <td>{{ server.cfgMem }}</td>
+                <td>{{ server.cfgDrive }}</td>
+                <td>{{ server.ResInt }}</td>
+                <td>{{ server.resExt }}</td>
+                <td>{{ server.ResMac }}</td>
+                <td>{{ server.ResUrl }}</td>
+                <td>{{ server.Role }}</td>
+                <td>{{ server.os }}</td>
+                <td>{{ server.portSsh }}</td>
+                <td>{{ server.portFtp }}</td>
+                <td>{{ server.contrat }}</td>
+                <td>{{ server.createdAt ? server.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ server.updatedAt ? server.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('admin_server_show', {'id': server.id}) }}">show</a>
+                    <a href="{{ path('admin_server_edit', {'id': server.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="17">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('admin_server_new') }}">Create new</a>
+{% endblock %}
