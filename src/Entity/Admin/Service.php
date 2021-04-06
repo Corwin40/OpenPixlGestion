@@ -42,6 +42,11 @@ class Service
      */
     private $client;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Server::class, inversedBy="services")
+     */
+    private $servers;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -103,6 +108,18 @@ class Service
     public function setClient(?Client $client): self
     {
         $this->client = $client;
+
+        return $this;
+    }
+
+    public function getServers(): ?Server
+    {
+        return $this->servers;
+    }
+
+    public function setServers(?Server $servers): self
+    {
+        $this->servers = $servers;
 
         return $this;
     }

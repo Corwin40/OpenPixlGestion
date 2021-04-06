@@ -3,6 +3,8 @@
 namespace App\Entity\Admin;
 
 use App\Repository\Admin\ServerRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -92,6 +94,16 @@ class Server
      * @ORM\Column(type="datetime")
      */
     private $updatedAt;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Service::class, mappedBy="servers")
+     */
+    private $services;
+
+    public function __construct()
+    {
+        $this->services = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -281,6 +293,36 @@ class Server
     public function setUpdatedAt(): self
     {
         $this->updatedAt = new \DateTime();
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Service[]
+     */
+    public function getServices(): Collection
+    {
+        return $this->services;
+    }
+
+    public function addService(Service $service): self
+    {
+        if (!$this->services->contains($service)) {
+            $this->services[] = $service;
+            $service->setServers($this);
+        }
+
+        return $this;
+    }
+
+    public function removeService(Service $service): self
+    {
+        if ($this->services->removeElement($service)) {
+            // set the owning side to null (unless already changed)
+            if ($service->getServers() === $this) {
+                $service->setServers(null);
+            }
+        }
 
         return $this;
     }
