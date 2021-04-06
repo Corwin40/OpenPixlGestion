@@ -37,6 +37,11 @@ class Service
      */
     private $updatedAt;
 
+    /**
+     * @ORM\ManyToOne(targetEntity=Client::class, inversedBy="services")
+     */
+    private $client;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -86,6 +91,18 @@ class Service
     public function setUpdatedAt(\DateTimeInterface $updatedAt): self
     {
         $this->updatedAt = $updatedAt;
+
+        return $this;
+    }
+
+    public function getClient(): ?Client
+    {
+        return $this->client;
+    }
+
+    public function setClient(?Client $client): self
+    {
+        $this->client = $client;
 
         return $this;
     }
