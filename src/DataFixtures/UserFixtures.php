@@ -20,14 +20,15 @@ class UserFixtures extends Fixture
     {
         $user = new User();
 
+        $user->setEmail('test@test.fr');
         $user->setPassword($this->passwordEncoder->encodePassword(
             $user,
-            'the_new_password'
+            '12345678'
         ));
+        $user->setCreatedAt(new \DateTime('now'));
+        $user->setUpdatedAt(new \DateTime('now'));
 
-        // $product = new Product();
-        // $manager->persist($product);
-
+        $manager->persist($user);
         $manager->flush();
     }
 }
