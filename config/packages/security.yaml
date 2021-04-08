@@ -15,9 +15,11 @@ security:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
         main:
-            anonymous: true
             lazy: true
             provider: app_user_provider
+
+            # by default, the feature allows 5 login attempts per minute
+            login_throttling: null
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
