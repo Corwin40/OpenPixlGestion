@@ -34,6 +34,7 @@ class ServerType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Server::class,
+            'translation_domain' => 'server'
         ]);
     }
 }

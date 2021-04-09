@@ -28,6 +28,7 @@ class ClientType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => Client::class,
+            'translation_domain' => 'client'
         ]);
     }
 }

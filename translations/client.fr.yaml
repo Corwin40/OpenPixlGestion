@@ -1,0 +1,10 @@
+lastName: Nom
+firstName: Prénom
+address: Adresse
+city: Ville
+zipcode: Code Postal
+email: e-mail
+phoneDesk: Téléphone du bureau
+createdAt: créé le
+updatedAt: modifié le
+services: Services

@@ -1,0 +1,12 @@
+cfgProc: Processeur
+cfgMem: Mémoire
+cfgDrive: Disque dur
+ResInt: Ip Interne
+ResExt: Ip externe
+ResMac: adresse MAC
+ResUrl: url
+Role: Rôle
+os: Système d'exploitation
+portSsh: Port ssh
+portFtp: Port ftp
+contrat: Contrat
