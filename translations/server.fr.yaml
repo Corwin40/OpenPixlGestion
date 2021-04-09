@@ -1,12 +1,15 @@
-cfgProc: Processeur
-cfgMem: Mémoire
-cfgDrive: Disque dur
-ResInt: Ip Interne
-ResExt: Ip externe
-ResMac: adresse MAC
-ResUrl: url
+Name: Nom
+Cfg proc: Processeur
+Cfg mem: Mémoire
+Cfg drive: Disque dur
+Res int: Ip Interne
+Res ext: Ip externe
+Res mac: adresse MAC
+Res url: url
 Role: Rôle
-os: Système d'exploitation
-portSsh: Port ssh
-portFtp: Port ftp
-contrat: Contrat
+Os: Système d'exploitation
+Port ssh: Port ssh
+Port ftp: Port ftp
+Contrat: Contrat
+Created at: créé le
+Updated at: modifié le
