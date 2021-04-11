@@ -23,8 +23,8 @@ use Symfony\Component\Security\Http\Util\TargetPathTrait;
 class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements PasswordAuthenticatedInterface
 {
     use TargetPathTrait;
-
-    public const LOGIN_ROUTE = 'app_login';
+    // Dans cette constante, on implemente le nom de la route de login
+    public const LOGIN_ROUTE = 'admin_dashboard_login';
 
     private $entityManager;
     private $urlGenerator;
@@ -97,7 +97,7 @@ class LoginFormAuthenticator extends AbstractFormLoginAuthenticator implements P
         }
 
         // redirect to some "app_homepage" route - of wherever you want
-        return new RedirectResponse($this->urlGenerator->generate('admin_dashboard'));
+        return new RedirectResponse($this->urlGenerator->generate('admin_dashboard_index'));
     }
 
     protected function getLoginUrl()

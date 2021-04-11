@@ -14,9 +14,10 @@
         {% endblock %}
     </head>
     <body>
-        <header>
-            
-        </header>
+    {% block header %}
+        {{ include('admin/admin/include/header_admin.html.twig') }}
+        {{ include('admin/admin/include/navbar_admin.html.twig') }}
+    {% endblock %}
         <main>
             {% block main %}
 
