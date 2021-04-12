@@ -10,6 +10,7 @@ $op-primary: darken(#428bca, 20%);
 //*** ------------- Import scss for customize ---------------- ***//
 @import 'include/header';
 @import 'include/body';
+@import 'include/content';
 //*** ------------- Import mixins ---------------- ***//
 @import "include/mixins/fontface";
 @include fontface('CerebriSans-light', '../../fonts/CerebriSans-Light', 300, normal);
