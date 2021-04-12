@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Validator\Constraints as Assert;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
@@ -111,60 +112,6 @@ class Client
         return $this->lastName;
     }
 
-    /**
-     * @return File|null
-     */
-    public function getImageFile(): ?File
-    {
-        return $this->imageFile;
-    }
-
-    /**
-     * @param File|null $imageFile
-     * @return Client
-     */
-    public function setImageFile(?File $imageFile): Client
-    {
-        $this->imageFile = $imageFile;
-        return $this;
-    }
-
-    /**
-     * @return string|null
-     */
-    public function getImageName(): ?string
-    {
-        return $this->imageName;
-    }
-
-    /**
-     * @param string|null $imageName
-     * @return Client
-     */
-    public function setImageName(?string $imageName): Client
-    {
-        $this->imageName = $imageName;
-        return $this;
-    }
-
-    /**
-     * @return int|null
-     */
-    public function getImageSize(): ?int
-    {
-        return $this->imageSize;
-    }
-
-    /**
-     * @param int|null $imageSize
-     * @return Client
-     */
-    public function setImageSize(?int $imageSize): Client
-    {
-        $this->imageSize = $imageSize;
-        return $this;
-    }
-
     public function setLastName(string $lastName): self
     {
         $this->lastName = $lastName;
@@ -241,6 +188,64 @@ class Client
     {
         $this->phoneDesk = $phoneDesk;
 
+        return $this;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|null $imageFile
+     * @return Client
+     */
+    public function setImageFile(?File $imageFile): Client
+    {
+        $this->imageFile = $imageFile;
+        if ($this->imageFile instanceof UploadedFile)
+        {
+            $this->updatedAt = new \DateTime('now');
+        }
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    /**
+     * @param string|null $imageName
+     * @return Client
+     */
+    public function setImageName(?string $imageName): Client
+    {
+        $this->imageName = $imageName;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
+    }
+
+    /**
+     * @param int|null $imageSize
+     * @return Client
+     */
+    public function setImageSize(?int $imageSize): Client
+    {
+        $this->imageSize = $imageSize;
         return $this;
     }
 
