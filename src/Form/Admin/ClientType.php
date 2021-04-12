@@ -6,6 +6,7 @@ use App\Entity\Admin\Client;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Vich\UploaderBundle\Form\Type\VichFileType;
 
 class ClientType extends AbstractType
 {
@@ -19,6 +20,11 @@ class ClientType extends AbstractType
             ->add('zipcode')
             ->add('email')
             ->add('phoneDesk')
+            ->add('imageFile', VichFileType::class, [
+                'class' => Option::class,
+                'choice_label' => 'name',
+                'multiple' => true
+            ])
             ->add('createdAt')
             ->add('updatedAt')
         ;

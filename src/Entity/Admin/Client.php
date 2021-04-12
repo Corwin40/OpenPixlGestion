@@ -6,6 +6,9 @@ use App\Repository\Admin\ClientRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
 
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
@@ -55,11 +58,32 @@ class Client
     private $phoneDesk;
 
     /**
+     * NOTE: This is not a mapped field of entity metadata, just a simple property.
+     * @Vich\UploadableField(mapping="client_image", fileNameProperty="imageName", size="imageSize")
+     * @var File|null
+     * @Assert\Image(
+     *     mimeTypes="image/jpeg"
+     * )
+     */
+    private $imageFile;
+
+    /**
+     * @ORM\Column(type="string", nullable=true)
+     * @var string|null
+     */
+    private $imageName;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     *
+     * @var int|null
+     */
+    private $imageSize;
+
+
+    /**
      * @ORM\Column(type="datetime")
      */
-
-    
-
     private $createdAt;
 
     /**
@@ -85,6 +109,60 @@ class Client
     public function getLastName(): ?string
     {
         return $this->lastName;
+    }
+
+    /**
+     * @return File|null
+     */
+    public function getImageFile(): ?File
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * @param File|null $imageFile
+     * @return Client
+     */
+    public function setImageFile(?File $imageFile): Client
+    {
+        $this->imageFile = $imageFile;
+        return $this;
+    }
+
+    /**
+     * @return string|null
+     */
+    public function getImageName(): ?string
+    {
+        return $this->imageName;
+    }
+
+    /**
+     * @param string|null $imageName
+     * @return Client
+     */
+    public function setImageName(?string $imageName): Client
+    {
+        $this->imageName = $imageName;
+        return $this;
+    }
+
+    /**
+     * @return int|null
+     */
+    public function getImageSize(): ?int
+    {
+        return $this->imageSize;
+    }
+
+    /**
+     * @param int|null $imageSize
+     * @return Client
+     */
+    public function setImageSize(?int $imageSize): Client
+    {
+        $this->imageSize = $imageSize;
+        return $this;
     }
 
     public function setLastName(string $lastName): self
