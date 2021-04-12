@@ -14,6 +14,7 @@ use Vich\UploaderBundle\Mapping\Annotation as Vich;
 /**
  * @ORM\Entity(repositoryClass=ClientRepository::class)
  * @Vich\Uploadable()
+ * @ORM\HasLifecycleCallbacks()
  */
 class Client
 {
@@ -97,6 +98,11 @@ class Client
      * @ORM\OneToMany(targetEntity=Service::class, mappedBy="client")
      */
     private $services;
+
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $nameSociety;
 
     public function __construct()
     {
@@ -255,9 +261,12 @@ class Client
         return $this->createdAt;
     }
 
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
+    /**
+     * @ORM\PrePersist()
+     */
+    public function setCreatedAt(): self
     {
-        $this->createdAt = $createdAt;
+        $this->createdAt = new \DateTime('now');
 
         return $this;
     }
@@ -267,9 +276,13 @@ class Client
         return $this->updatedAt;
     }
 
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function setUpdatedAt(): self
     {
-        $this->updatedAt = $updatedAt;
+        $this->updatedAt = new \DateTime('now');
 
         return $this;
     }
@@ -300,6 +313,23 @@ class Client
                 $service->setClient(null);
             }
         }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->nameSociety;
+    }
+
+    public function getNameSociety(): ?string
+    {
+        return $this->nameSociety;
+    }
+
+    public function setNameSociety(string $nameSociety): self
+    {
+        $this->nameSociety = $nameSociety;
 
         return $this;
     }

@@ -14,8 +14,6 @@ class ServiceType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('createdAt')
-            ->add('updatedAt')
             ->add('client')
             ->add('servers')
         ;

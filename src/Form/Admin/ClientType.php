@@ -15,6 +15,7 @@ class ClientType extends AbstractType
         $builder
             ->add('lastName')
             ->add('firstName')
+            ->add('nameSociety')
             ->add('address')
             ->add('city')
             ->add('zipcode')
@@ -23,8 +24,6 @@ class ClientType extends AbstractType
             ->add('imageFile', VichFileType::class, [
                 'required' => false
             ])
-            ->add('createdAt')
-            ->add('updatedAt')
         ;
     }
 

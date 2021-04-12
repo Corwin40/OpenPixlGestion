@@ -24,9 +24,6 @@ class ServerType extends AbstractType
             ->add('os')
             ->add('portSsh')
             ->add('portFtp')
-            ->add('contrat')
-            ->add('createdAt')
-            ->add('updatedAt')
         ;
     }
 

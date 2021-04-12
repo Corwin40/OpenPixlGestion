@@ -276,7 +276,7 @@ class Server
      */
     public function setCreatedAt(): self
     {
-        $this->createdAt = new \DateTime();
+        $this->createdAt = new \DateTime('now');
 
         return $this;
     }
@@ -292,7 +292,7 @@ class Server
      */
     public function setUpdatedAt(): self
     {
-        $this->updatedAt = new \DateTime();
+        $this->updatedAt = new \DateTime('now');
 
         return $this;
     }
@@ -325,5 +325,9 @@ class Server
         }
 
         return $this;
+    }
+    public function __toString()
+    {
+        return $this->name;
     }
 }
