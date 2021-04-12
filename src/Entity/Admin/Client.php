@@ -57,6 +57,9 @@ class Client
     /**
      * @ORM\Column(type="datetime")
      */
+
+    
+
     private $createdAt;
 
     /**
