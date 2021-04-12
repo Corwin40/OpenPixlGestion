@@ -21,9 +21,7 @@ class ClientType extends AbstractType
             ->add('email')
             ->add('phoneDesk')
             ->add('imageFile', VichFileType::class, [
-                'class' => Option::class,
-                'choice_label' => 'name',
-                'multiple' => true
+                'required' => false
             ])
             ->add('createdAt')
             ->add('updatedAt')
