@@ -17,6 +17,7 @@
                 <th>Code postal</th>
                 <th>Email</th>
                 <th>Tel Bureau</th>
+                <th>Services</th>
                 <th>Créé le</th>
                 <th>Modifié le</th>
                 <th>Actions</th>
@@ -34,6 +35,7 @@
                 <td>{{ client.zipcode }}</td>
                 <td>{{ client.email }}</td>
                 <td>{{ client.phoneDesk }}</td>
+                <td>{{ client.services|length }}</td>
                 <td>{{ client.createdAt ? client.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ client.updatedAt ? client.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>

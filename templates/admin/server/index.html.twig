@@ -24,7 +24,9 @@
                 <th>Contrat</th>
                 <th>Créé le</th>
                 <th>modifié le</th>
+                <th>Services</th>
                 <th>Actions</th>
+
             </tr>
         </thead>
         <tbody>
@@ -46,6 +48,7 @@
                 <td>{{ server.contrat }}</td>
                 <td>{{ server.createdAt ? server.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                 <td>{{ server.updatedAt ? server.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ server.services|length }}</td>
                 <td>
                     <a href="{{ path('admin_server_show', {'id': server.id}) }}">show</a>
                     <a href="{{ path('admin_server_edit', {'id': server.id}) }}">edit</a>
