@@ -49,11 +49,12 @@
                 <td>
                     <a href="{{ path('admin_server_show', {'id': server.id}) }}">show</a>
                     <a href="{{ path('admin_server_edit', {'id': server.id}) }}">edit</a>
+                    <a href="{{ path('admin_server_delete', {'id': server.id}) }}">delete</a>
                 </td>
             </tr>
         {% else %}
             <tr>
-                <td colspan="17">no records found</td>
+                <td colspan="17">Aucun enregistrement trouvé</td>
             </tr>
         {% endfor %}
         </tbody>
