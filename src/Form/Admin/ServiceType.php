@@ -2,7 +2,10 @@
 
 namespace App\Form\Admin;
 
+use App\Entity\Admin\Client;
+use App\Entity\Admin\Server;
 use App\Entity\Admin\Service;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -14,8 +17,18 @@ class ServiceType extends AbstractType
         $builder
             ->add('name')
             ->add('description')
-            ->add('client')
-            ->add('servers')
+            ->add('client', EntityType::class, [
+                    'class' => Client::class,
+                    'choice_label' => 'nameSociety',
+                    'multiple' => false
+                ]
+            )
+            ->add('servers', EntityType::class, [
+                    'class' => Server::class,
+                    'choice_label' => 'name',
+                    'multiple' => false
+                ]
+            )
         ;
     }
 
