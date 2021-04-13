@@ -3,9 +3,26 @@
 {% block title %}New Server{% endblock %}
 
 {% block main %}
-    <h1>Nouveau Serveur</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h1>Modifier le Client</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <h1>Nouveau Serveur</h1>
 
-    {{ include('admin/server/_form.html.twig') }}
+                    {{ include('admin/server/_form.html.twig') }}
 
-    <a href="{{ path('admin_server_index') }}">Retour à la liste</a>
+                    <a href="{{ path('admin_server_index') }}">Retour à la liste</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

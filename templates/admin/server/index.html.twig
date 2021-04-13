@@ -3,65 +3,80 @@
 {% block title %}Server index{% endblock %}
 
 {% block main %}
-    <h1>Index serveur</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h1>Index client</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>Nom</th>
+                                <th>Processeur</th>
+                                <th>Mémoire</th>
+                                <th>Stockage</th>
+                                <th>Ip Interne</th>
+                                <th>Ip externe</th>
+                                <th>Adresse MAC</th>
+                                <th>Url</th>
+                                <th>Rôle</th>
+                                <th>Système d'éxploitation</th>
+                                <th>Port ssh</th>
+                                <th>Port ftp</th>
+                                <th>Contrat</th>
+                                <th>Créé le</th>
+                                <th>modifié le</th>
+                                <th>Services</th>
+                                <th>Actions</th>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Processeur</th>
-                <th>Mémoire</th>
-                <th>Stockage</th>
-                <th>Ip Interne</th>
-                <th>Ip externe</th>
-                <th>Adresse MAC</th>
-                <th>Url</th>
-                <th>Rôle</th>
-                <th>Système d'éxploitation</th>
-                <th>Port ssh</th>
-                <th>Port ftp</th>
-                <th>Contrat</th>
-                <th>Créé le</th>
-                <th>modifié le</th>
-                <th>Services</th>
-                <th>Actions</th>
-
-            </tr>
-        </thead>
-        <tbody>
-        {% for server in servers %}
-            <tr>
-                <td>{{ server.id }}</td>
-                <td>{{ server.name }}</td>
-                <td>{{ server.cfgProc }}</td>
-                <td>{{ server.cfgMem }}</td>
-                <td>{{ server.cfgDrive }}</td>
-                <td>{{ server.ResInt }}</td>
-                <td>{{ server.resExt }}</td>
-                <td>{{ server.ResMac }}</td>
-                <td>{{ server.ResUrl }}</td>
-                <td>{{ server.Role }}</td>
-                <td>{{ server.os }}</td>
-                <td>{{ server.portSsh }}</td>
-                <td>{{ server.portFtp }}</td>
-                <td>{{ server.contrat }}</td>
-                <td>{{ server.createdAt ? server.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ server.updatedAt ? server.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ server.services|length }}</td>
-                <td>
-                    <a href="{{ path('admin_server_show', {'id': server.id}) }}">show</a>
-                    <a href="{{ path('admin_server_edit', {'id': server.id}) }}">edit</a>
-                    <a href="{{ path('admin_server_delete', {'id': server.id}) }}">delete</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="17">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('admin_server_new') }}">Ajouter un serveur</a>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for server in servers %}
+                            <tr>
+                                <td>{{ server.id }}</td>
+                                <td>{{ server.name }}</td>
+                                <td>{{ server.cfgProc }}</td>
+                                <td>{{ server.cfgMem }}</td>
+                                <td>{{ server.cfgDrive }}</td>
+                                <td>{{ server.ResInt }}</td>
+                                <td>{{ server.resExt }}</td>
+                                <td>{{ server.ResMac }}</td>
+                                <td>{{ server.ResUrl }}</td>
+                                <td>{{ server.Role }}</td>
+                                <td>{{ server.os }}</td>
+                                <td>{{ server.portSsh }}</td>
+                                <td>{{ server.portFtp }}</td>
+                                <td>{{ server.contrat }}</td>
+                                <td>{{ server.createdAt ? server.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ server.updatedAt ? server.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ server.services|length }}</td>
+                                <td>
+                                    <a href="{{ path('admin_server_show', {'id': server.id}) }}">show</a>
+                                    <a href="{{ path('admin_server_edit', {'id': server.id}) }}">edit</a>
+                                    <a href="{{ path('admin_server_delete', {'id': server.id}) }}">delete</a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="17">Aucun enregistrement trouvé</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                <div class="card-footer">
+                    <a href="{{ path('admin_server_new') }}">Ajouter un serveur</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}
