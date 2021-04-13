@@ -19,6 +19,10 @@ class ClientRepository extends ServiceEntityRepository
         parent::__construct($registry, Client::class);
     }
 
+    public function countAll(){
+
+    }
+
     // /**
     //  * @return Client[] Returns an array of Client objects
     //  */

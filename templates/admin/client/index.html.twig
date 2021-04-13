@@ -3,54 +3,72 @@
 {% block title %}Client index{% endblock %}
 
 {% block main %}
-    <h1>Index client</h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h1>Index client</h1>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <table class="table">
+                        <thead>
+                        <tr>
+                            <th>Id</th>
+                            <th>Nom de la société</th>
+                            <th>Nom</th>
+                            <th>Prénom</th>
+                            <th>Adresse</th>
+                            <th>Ville</th>
+                            <th>Code postal</th>
+                            <th>Email</th>
+                            <th>Tel Bureau</th>
+                            <th>Services</th>
+                            <th>Créé le</th>
+                            <th>Modifié le</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for client in clients %}
+                            <tr>
+                                <td>{{ client.id }}</td>
+                                <td>{{ client.nameSociety }}</td>
+                                <td>{{ client.lastName}}</td>
+                                <td>{{ client.firstName }}</td>
+                                <td>{{ client.address }}</td>
+                                <td>{{ client.city }}</td>
+                                <td>{{ client.zipcode }}</td>
+                                <td>{{ client.email }}</td>
+                                <td>{{ client.phoneDesk }}</td>
+                                <td>{{ client.services|length }}</td>
+                                <td>{{ client.createdAt ? client.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ client.updatedAt ? client.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>
+                                    <a href="{{ path('admin_client_show', {'id': client.id}) }}"><i class="far fa-eye"></i></a>
+                                    <a href="{{ path('admin_client_edit', {'id': client.id}) }}"><i class="far fa-pencil-alt"></i></a>
+                                    <a href="{{ path('admin_client_delete', {'id': client.id}) }}"><i class="far fa-trash-alt"></i></a>
+                                </td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="13">Aucun enregistrement trouvé</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                    <div class="card-footer">
+                        <a href="{{ path('admin_client_new') }}">Ajouter un client</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Prénom</th>
-                <th>Nom de la société</th>
-                <th>Adresse</th>
-                <th>Ville</th>
-                <th>Code postal</th>
-                <th>Email</th>
-                <th>Tel Bureau</th>
-                <th>Services</th>
-                <th>Créé le</th>
-                <th>Modifié le</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for client in clients %}
-            <tr>
-                <td>{{ client.id }}</td>
-                <td>{{ client.lastName}}</td>
-                <td>{{ client.firstName }}</td>
-                <td>{{ client.nameSociety }}</td>
-                <td>{{ client.address }}</td>
-                <td>{{ client.city }}</td>
-                <td>{{ client.zipcode }}</td>
-                <td>{{ client.email }}</td>
-                <td>{{ client.phoneDesk }}</td>
-                <td>{{ client.services|length }}</td>
-                <td>{{ client.createdAt ? client.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ client.updatedAt ? client.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('admin_client_show', {'id': client.id}) }}">show</a>
-                    <a href="{{ path('admin_client_edit', {'id': client.id}) }}">edit</a>
-                    <a href="{{ path('admin_client_delete', {'id': client.id}) }}">delete</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="11">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
 
-    <a href="{{ path('admin_client_new') }}">Ajouter un client</a>
 {% endblock %}
