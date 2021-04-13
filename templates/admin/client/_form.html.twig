@@ -1,4 +1,16 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+<div class="form-row">
+    <div class="col">
+        <div class="form-group row">
+            {{ form_label(form.nameSociety, {'label_attr': {'class': 'col-sm-3 col-form-label'}}) }}
+            <div class="col-sm-9">
+                {{ form_widget(form.nameSociety) }}
+                <small>{{ form_help(form.nameSociety) }}</small>
+                <div class="form-error">
+                    {{ form_errors(form.nameSociety) }}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 {{ form_end(form) }}
