@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Service index{% endblock %}
+{% block title %}Index service{% endblock %}
 
 {% block main %}
 <div class="container-fluid">
@@ -8,7 +8,7 @@
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
-                    <h1>Index client</h1>
+                    <h1>Index services</h1>
                 </div>
             </div>
         </div>
@@ -36,9 +36,9 @@
                         <td>{{ service.createdAt ? service.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                         <td>{{ service.updatedAt ? service.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                         <td>
-                            <a href="{{ path('admin_service_show', {'id': service.id}) }}">show</a>
-                            <a href="{{ path('admin_service_edit', {'id': service.id}) }}">edit</a>
-                            <a href="{{ path('admin_service_delete', {'id': service.id}) }}">delete</a>
+                            <a href="{{ path('admin_service_show', {'id': service.id}) }}"><i class="far fa-eye"></i></a>
+                            <a href="{{ path('admin_service_edit', {'id': service.id}) }}"><i class="far fa-pencil-alt"></i></a>
+                            <a href="{{ path('admin_service_delete', {'id': service.id}) }}"><i class="far fa-trash-alt"></i></a>
                         </td>
                     </tr>
                 {% else %}

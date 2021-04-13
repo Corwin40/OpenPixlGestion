@@ -2,22 +2,18 @@
 
 {% block title %}Facture index{% endblock %}
 
-{% block body %}
-    <h1>Facture index</h1>
+{% block main %}
+    <h1>Index facture</h1>
 
     <table class="table">
         <thead>
-            <tr>
-                <th>Id</th>
-                <th>NumFacture</th>
-                <th>Services</th>
-                <th>Designation</th>
-                <th>ConditionsFact</th>
-                <th>ReadFacture</th>
-                <th>CreatedAt</th>
-                <th>UpdatedAt</th>
-                <th>actions</th>
-            </tr>
+        <tr>
+            <th>Id</th>
+            <th>Numéro</th>
+            <th>Services</th>
+            <th>CreatedAt</th>
+            <th>UpdatedAt</th>
+        </tr>
         </thead>
         <tbody>
         {% for facture in factures %}
@@ -37,11 +33,9 @@
             </tr>
         {% else %}
             <tr>
-                <td colspan="9">no records found</td>
+                <td colspan="9">Aucune facture trouvée</td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
-
-    <a href="{{ path('webapp_facture_new') }}">Create new</a>
 {% endblock %}
