@@ -12,23 +12,23 @@
                 <td>{{ client.id }}</td>
             </tr>
             <tr>
-                <th>LastName</th>
+                <th>Nom</th>
                 <td>{{ client.lastName }}</td>
             </tr>
             <tr>
-                <th>FirstName</th>
+                <th>Prenom</th>
                 <td>{{ client.firstName }}</td>
             </tr>
             <tr>
-                <th>Address</th>
+                <th>Adresse</th>
                 <td>{{ client.address }}</td>
             </tr>
             <tr>
-                <th>City</th>
+                <th>Ville</th>
                 <td>{{ client.city }}</td>
             </tr>
             <tr>
-                <th>Zipcode</th>
+                <th>Code Postal</th>
                 <td>{{ client.zipcode }}</td>
             </tr>
             <tr>
@@ -36,15 +36,15 @@
                 <td>{{ client.email }}</td>
             </tr>
             <tr>
-                <th>PhoneDesk</th>
+                <th>Téléphone Bureau</th>
                 <td>{{ client.phoneDesk }}</td>
             </tr>
             <tr>
-                <th>CreatedAt</th>
+                <th>Créé le</th>
                 <td>{{ client.createdAt ? client.createdAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
             <tr>
-                <th>UpdatedAt</th>
+                <th>Modifié le</th>
                 <td>{{ client.updatedAt ? client.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
             </tr>
         </tbody>
