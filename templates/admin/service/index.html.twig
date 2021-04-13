@@ -3,40 +3,55 @@
 {% block title %}Service index{% endblock %}
 
 {% block main %}
-    <h1>Index service</h1>
-
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Nom</th>
-                <th>Déscription</th>
-                <th>Crée le</th>
-                <th>Modifié le</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for service in services %}
-            <tr>
-                <td>{{ service.id }}</td>
-                <td>{{ service.name }}</td>
-                <td>{{ service.description }}</td>
-                <td>{{ service.createdAt ? service.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>{{ service.updatedAt ? service.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-                <td>
-                    <a href="{{ path('admin_service_show', {'id': service.id}) }}">show</a>
-                    <a href="{{ path('admin_service_edit', {'id': service.id}) }}">edit</a>
-                    <a href="{{ path('admin_service_delete', {'id': service.id}) }}">delete</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="6">Aucun enregistrement trouvé</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-
-    <a href="{{ path('admin_service_new') }}">Ajouter un service</a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Index client</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <table class="table">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom</th>
+                        <th>Déscription</th>
+                        <th>Crée le</th>
+                        <th>Modifié le</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                {% for service in services %}
+                    <tr>
+                        <td>{{ service.id }}</td>
+                        <td>{{ service.name }}</td>
+                        <td>{{ service.description }}</td>
+                        <td>{{ service.createdAt ? service.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>{{ service.updatedAt ? service.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>
+                            <a href="{{ path('admin_service_show', {'id': service.id}) }}">show</a>
+                            <a href="{{ path('admin_service_edit', {'id': service.id}) }}">edit</a>
+                            <a href="{{ path('admin_service_delete', {'id': service.id}) }}">delete</a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="6">Aucun enregistrement trouvé</td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+                <div class="card-footer">
+                    <a href="{{ path('admin_service_new') }}">Ajouter un service</a>
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock %}

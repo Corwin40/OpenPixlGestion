@@ -3,9 +3,23 @@
 {% block title %}New Service{% endblock %}
 
 {% block main %}
-    <h1>Nouveau Service</h1>
-
-    {{ include('admin/service/_form.html.twig') }}
-
-    <a href="{{ path('admin_service_index') }}">Retour à liste</a>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Modifier le Client</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                {{ include('admin/service/_form.html.twig') }}
+                <a href="{{ path('admin_service_index') }}">Retour à liste</a>
+            </div>
+        </div>
+    </div>
+</div>
 {% endblock %}
