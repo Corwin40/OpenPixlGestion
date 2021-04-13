@@ -1,0 +1,47 @@
+{% extends 'webapp.html.twig' %}
+
+{% block title %}Facture index{% endblock %}
+
+{% block main %}
+    <h1>Facture index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>NumFacture</th>
+                <th>Services</th>
+                <th>Designation</th>
+                <th>ConditionsFact</th>
+                <th>ReadFacture</th>
+                <th>CreatedAt</th>
+                <th>UpdatedAt</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for facture in factures %}
+            <tr>
+                <td>{{ facture.id }}</td>
+                <td>{{ facture.numFacture }}</td>
+                <td>{{ facture.services }}</td>
+                <td>{{ facture.designation }}</td>
+                <td>{{ facture.conditionsFact }}</td>
+                <td>{{ facture.readFacture }}</td>
+                <td>{{ facture.createdAt ? facture.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ facture.updatedAt ? facture.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                <td>
+                    <a href="{{ path('webapp_facture_show', {'id': facture.id}) }}">show</a>
+                    <a href="{{ path('webapp_facture_edit', {'id': facture.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="9">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('webapp_facture_new') }}">Create new</a>
+{% endblock %}
