@@ -4,6 +4,8 @@ namespace App\Form\Admin;
 
 use App\Entity\Admin\Client;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Vich\UploaderBundle\Form\Type\VichFileType;
@@ -19,7 +21,7 @@ class ClientType extends AbstractType
             ->add('address')
             ->add('city')
             ->add('zipcode')
-            ->add('email')
+            ->add('email', EmailType::class)
             ->add('phoneDesk')
             ->add('imageFile', VichFileType::class, [
                 'required' => false
