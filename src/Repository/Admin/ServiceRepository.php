@@ -5,6 +5,7 @@ namespace App\Repository\Admin;
 use App\Entity\Admin\Service;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
 use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\ORM\QueryBuilder;
 
 /**
  * @method Service|null find($id, $lockMode = null, $lockVersion = null)
@@ -19,9 +20,17 @@ class ServiceRepository extends ServiceEntityRepository
         parent::__construct($registry, Service::class);
     }
 
-    public function ListServicesEnd()
+    public function ListServicesEnd($date)
     {
-
+        return $this->createQueryBuilder('s')
+            ->addSelect('s.id AS id, s.name, s.descriptions, s.createdAt, c.nameSociety')
+            ->join('s.client', 'c')
+            ->andWhere('s.createdAt = (:date - 30)')
+            ->setParameter('date', $date)
+            ->orderBy('s.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
     }
 
     // /**
