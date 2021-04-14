@@ -1,4 +1,26 @@
 {{ form_start(form) }}
-    {{ form_widget(form) }}
-    <button class="btn">{{ button_label|default('Enregistrer') }}</button>
+<div class="row">
+    <div class="col-2">
+        {{ form_label(form.name, 'Name', {'label_attr': {'class':'form-label'}}) }}
+        {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="col-10"></div>
+    <div class="col-3">
+        {{ form_label(form.description, 'Description', {'label_attr': {'class':'form-label'}}) }}
+        {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="col-9"></div>
+    <div class="col-2">
+        {{ form_label(form.client, 'Client', {'label_attr': {'class':'form-label'}}) }}
+        {{ form_widget(form.client, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="col-10"></div>
+    <div class="col-3">
+        {{ form_label(form.servers, 'Server', {'label_attr': {'class':'form-label'}}) }}
+        {{ form_widget(form.servers, {'attr': {'class': 'form-control'}}) }}
+    </div>
+    <div class="col-9"></div>
+    <div class="col-12">
+        <button type="submit" class="btn btn-primary">Enregistrer</button>
+    </div>
 {{ form_end(form) }}
