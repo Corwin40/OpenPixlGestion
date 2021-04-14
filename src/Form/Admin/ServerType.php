@@ -4,6 +4,8 @@ namespace App\Form\Admin;
 
 use App\Entity\Admin\Server;
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\ChoiceList\ChoiceList;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
@@ -21,7 +23,13 @@ class ServerType extends AbstractType
             ->add('ResMac')
             ->add('ResUrl')
             ->add('Role')
-            ->add('os')
+            ->add('os', ChoiceType::class, [
+                'choices' => [
+                    'Ubuntu 20.04' => true,
+                    'Windows 10' => true,
+                    'Windows 7' => true,
+                ],
+            ])
             ->add('portSsh')
             ->add('portFtp')
         ;
