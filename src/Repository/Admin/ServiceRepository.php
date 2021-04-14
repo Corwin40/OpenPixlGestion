@@ -19,6 +19,11 @@ class ServiceRepository extends ServiceEntityRepository
         parent::__construct($registry, Service::class);
     }
 
+    public function ListServicesEnd()
+    {
+
+    }
+
     // /**
     //  * @return Service[] Returns an array of Service objects
     //  */
@@ -26,6 +31,7 @@ class ServiceRepository extends ServiceEntityRepository
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('s')
+            ->join
             ->andWhere('s.exampleField = :val')
             ->setParameter('val', $value)
             ->orderBy('s.id', 'ASC')

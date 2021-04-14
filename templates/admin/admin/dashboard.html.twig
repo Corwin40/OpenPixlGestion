@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AdminController!{% endblock %}
+{% block title %}Dashboard{% endblock %}
 
 {% block main %}
 <div class="container-fluid">
@@ -29,6 +29,15 @@
                 <div class="card-body">
                     <h2>Services</h2>
                     <p>{{ services|length }}</p>
+                    <p><i class="fas fa-concierge-bell" size="2"></i></p>
+                </div>
+            </div>
+        </div>
+        <div class="col-3">
+            <div class="card">
+                <div class="card-body">
+                    <h2>Factures</h2>
+                    <p>{{ factures|length }}</p>
                     <p><i class="fas fa-concierge-bell" size="2"></i></p>
                 </div>
             </div>

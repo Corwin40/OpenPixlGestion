@@ -35,6 +35,15 @@
                         <li><a class="dropdown-item" href="{{ path('admin_server_new') }}"><i class="far fa-file-alt"></i></i> Ajouter un serveur</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="userpanel" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-users"></i> Facture
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="userpanel">
+                        <li><a class="dropdown-item" href="{{ path('webapp_facture_index') }}"><i class="far fa-file-alt"></i></i> Liste des serveurs</a></li>
+                        <li><a class="dropdown-item" href="{{ path('webapp_facture_new') }}"><i class="far fa-file-alt"></i></i> Ajouter un serveur</a></li>
+                    </ul>
+                </li>
             </ul>
         </div>
     </div>
