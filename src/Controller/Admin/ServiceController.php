@@ -108,5 +108,26 @@ class ServiceController extends AbstractController
         return $this->redirectToRoute('admin_service_index');
     }
 
+    public function third_reminder()
+    {
+        // Liste les service à terme dans 15 jours co,ndition remind15 false
+        // update la liste "foreach" avec le champs remind15 true
+        // envopie d'un mail pour chaque service à terme
+    }
 
+    public function second_reminder()
+    {
+        // Liste les service à terme dans 15 jours
+        // update la liste "foreach" avec le champs remind15 true
+        // envopie d'un mail pour chaque service à terme
+
+    }
+
+    public function firsrt_reminder()
+    {
+        // Liste les service à terme dans 15 jours
+        // update la liste "foreach" avec le champs remind15 true
+        // envopie d'un mail pour chaque service à terme
+
+    }
 }
