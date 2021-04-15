@@ -48,6 +48,11 @@ class Service
      */
     private $servers;
 
+    /**
+     * @ORM\Column(type="date", nullable=true)
+     */
+    private $birthday;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -128,6 +133,18 @@ class Service
     public function setServers(?Server $servers): self
     {
         $this->servers = $servers;
+
+        return $this;
+    }
+
+    public function getBirthday(): ?\DateTimeInterface
+    {
+        return $this->birthday;
+    }
+
+    public function setBirthday(?\DateTimeInterface $birthday): self
+    {
+        $this->birthday = $birthday;
 
         return $this;
     }

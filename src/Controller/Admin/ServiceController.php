@@ -91,4 +91,13 @@ class ServiceController extends AbstractController
 
         return $this->redirectToRoute('admin_service_index');
     }
+
+    /**
+     * Liste les services arrivant à terme dans les Trente jours
+     * Route("/birthday", name="admin_service_30days")
+     */
+    public function listServiceBirthday()
+    {
+
+    }
 }
