@@ -142,9 +142,13 @@ class Service
         return $this->birthday;
     }
 
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
     public function setBirthday(?\DateTimeInterface $birthday): self
     {
-        $this->birthday = $birthday;
+        $this->birthday = new \DateTime('Year')+1;
 
         return $this;
     }
