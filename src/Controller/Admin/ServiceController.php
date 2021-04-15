@@ -42,6 +42,38 @@ class ServiceController extends AbstractController
     }
 
     /**
+     * @Route("/firstremind", name="admin_service_firstremind", methods={"GET"})
+     */
+    public function firstremind(ServiceRepository $serviceRepository): Response
+    {
+        //Variable Date
+        $today = new \DateTime('now');
+        $datelimite = new \DateTime('+45days');
+        // Liste les service à terme dans 15 jours
+
+        $listfirstreminders = $this->getDoctrine()->getRepository(Service::class)->ListFirstReminder($today, $datelimite);
+
+        // Update la liste "foreach" avec le champs remind15 true
+        foreach ($listfirstreminders as $listfirstreminder )
+        {
+            $em = $this->getDoctrine()->getManager();
+            $service = $em->getRepository(Service::class)->find($listfirstreminder[0]);
+            if (!$service){
+                throw $this->createNotFoundException(
+                    'No product found for id '
+                );
+            }
+            $service->setFirstreminder(1);
+            $em->flush();
+        }
+        // Envoie d'un mail pour chaques services à termes
+
+        return $this->render('admin/service/index.html.twig', [
+            'services' => $serviceRepository->findAll(),
+        ]);
+    }
+
+    /**
      * @Route("/new", name="admin_service_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -108,26 +140,20 @@ class ServiceController extends AbstractController
         return $this->redirectToRoute('admin_service_index');
     }
 
-    public function third_reminder()
+    public function thirdreminder()
     {
-        // Liste les service à terme dans 15 jours co,ndition remind15 false
-        // update la liste "foreach" avec le champs remind15 true
-        // envopie d'un mail pour chaque service à terme
+        // Liste les services à termes dans 15 jours condition third_reminder = false
+        // Update la liste "foreach" avec le champs remind15 true
+        // Envoie d'un mail pour chaques services à termes
     }
 
-    public function second_reminder()
-    {
-        // Liste les service à terme dans 15 jours
-        // update la liste "foreach" avec le champs remind15 true
-        // envopie d'un mail pour chaque service à terme
-
-    }
-
-    public function firsrt_reminder()
+    public function secondreminder()
     {
         // Liste les service à terme dans 15 jours
         // update la liste "foreach" avec le champs remind15 true
         // envopie d'un mail pour chaque service à terme
 
     }
+
+
 }

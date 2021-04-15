@@ -53,6 +53,21 @@ class Service
      */
     private $birthday;
 
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $firstreminder;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $secondreminder;
+
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    private $thirdreminder;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -149,6 +164,42 @@ class Service
     public function setBirthday(): self
     {
         $this->birthday = new \DateTime('+1years');
+
+        return $this;
+    }
+
+    public function getFirstreminder(): ?bool
+    {
+        return $this->firstreminder;
+    }
+
+    public function setFirstreminder(bool $firstreminder): self
+    {
+        $this->firstreminder = $firstreminder;
+
+        return $this;
+    }
+
+    public function getSecondreminder(): ?bool
+    {
+        return $this->secondreminder;
+    }
+
+    public function setSecondreminder(bool $secondreminder): self
+    {
+        $this->secondreminder = $secondreminder;
+
+        return $this;
+    }
+
+    public function getThirdreminder(): ?bool
+    {
+        return $this->thirdreminder;
+    }
+
+    public function setThirdreminder(bool $thirdreminder): self
+    {
+        $this->thirdreminder = $thirdreminder;
 
         return $this;
     }

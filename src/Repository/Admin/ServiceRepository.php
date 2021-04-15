@@ -34,6 +34,22 @@ class ServiceRepository extends ServiceEntityRepository
             ;
     }
 
+    public function ListFirstReminder($today, $datelimit)
+    {
+        return $this->createQueryBuilder('s')
+            ->addSelect('s.id')
+            ->join('s.client', 'c')
+            ->andWhere('s.birthday between :today And :datelimit')
+            ->andWhere('s.firstreminder = :reminder')
+            ->setParameter('today', $today)
+            ->setParameter('datelimit', $datelimit)
+            ->setParameter('reminder', 0)
+            ->orderBy('s.id', 'ASC')
+            ->getQuery()
+            ->getResult()
+            ;
+    }
+
     // /**
     //  * @return Service[] Returns an array of Service objects
     //  */
