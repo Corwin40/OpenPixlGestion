@@ -1,4 +1,19 @@
-{% for listthirtyday in listthirtydays %}
+<table>
+    <thead>
+        <tr>
+            <th>Nom de service</th>
+        </tr>
+    </thead>
+    <tbody>
+{% for listbirthday in listbirthdays %}
+    <tr>
+        <td>{{ listbirthday.nameService }}</td>
+    </tr>
 {% else %}
-<p>Pas de résultats</p>
-{% enfor %}
+    <tr>
+        <td colspan="1"><b>Aucun services à terme dans les trente jours</b></td>
+    </tr>
+
+{% endfor %}
+    </tbody>
+</table>

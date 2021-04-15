@@ -146,9 +146,9 @@ class Service
      * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
-    public function setBirthday(?\DateTimeInterface $birthday): self
+    public function setBirthday(): self
     {
-        $this->birthday = new \DateTime('Year')+1;
+        $this->birthday = new \DateTime('+1years');
 
         return $this;
     }

@@ -28,15 +28,16 @@ class ServiceController extends AbstractController
     /**
      * @Route("/birthday", name="admin_service_birthday", methods={"GET"})
      */
-    public function index2(ServiceRepository $serviceRepository): Response
+    public function listbirtthday(ServiceRepository $serviceRepository): Response
     {
         $today = new \DateTime('now');
-        $thirtyday =  date_format('Y-m-d', $today);
+        // pour ajouter en supprimer des jours dans le datetime s'exprimer directemen sur les jours
+        $thirtyday = new \DateTime('+1months');
 
-        dd($today, $thirtyday);
+        $listbirthdays = $this->getDoctrine()->getRepository(Service::class)->ListServicesEnd($today, $thirtyday);
 
-        return $this->render('admin/service/index.html.twig', [
-            'services' => $serviceRepository->findAll(),
+        return $this->render('admin/admin/thirty.html.twig', [
+            'listbirthdays' => $listbirthdays,
         ]);
     }
 

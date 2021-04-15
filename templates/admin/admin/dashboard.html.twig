@@ -13,18 +13,9 @@
                 </div>
             </div>
         </div>
-<<<<<<< Updated upstream
-    </div>
-    <div class="row">
-        <div class="col-3">
-            <div class="card">
-                <div class="card-body">
-                    <h2>Clients</h2>
-                    <p>{{ clients|length }}</p>
-                    <p><i class="fas fa-user-tie"></i></p>
-=======
     </section>
-    <section>
+
+    <section class="container-fluid">
         <div class="row">
             <div class="col-3">
                 <div class="card">
@@ -33,7 +24,6 @@
                         <p>{{ clients|length }}</p>
                         <p><i class="fas fa-user-tie"></i></p>
                     </div>
->>>>>>> Stashed changes
                 </div>
             </div>
             <div class="col-3">
@@ -55,5 +45,6 @@
                 </div>
             </div>
         </div>
+        {{ render(controller('App\\Controller\\Admin\\ServiceController::listbirtthday')) }}
     </section>
 {% endblock %}

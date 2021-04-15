@@ -20,14 +20,13 @@ class ServiceRepository extends ServiceEntityRepository
         parent::__construct($registry, Service::class);
     }
 
-
     public function ListServicesEnd($today, $thirtydays)
     {
         return $this->createQueryBuilder('s')
-            ->addSelect('s.id AS id, s.name AS nameService, s.descriptions AS descrService, s.birthday AS birthday, c.nameSociety AS society')
+            ->addSelect('s.id AS id, s.name AS nameService, s.description AS descrService, s.birthday AS birthday, c.nameSociety AS society')
             ->join('s.client', 'c')
-            ->andWhere('s.birthday between :today And :thirtydays)')
-            ->setParameter('toda', $today)
+            ->andWhere('s.birthday between :today And :thirtydays')
+            ->setParameter('today', $today)
             ->setParameter('thirtydays', $thirtydays)
             ->orderBy('s.id', 'ASC')
             ->getQuery()
