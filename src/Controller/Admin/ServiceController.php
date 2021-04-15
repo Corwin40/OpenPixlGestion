@@ -26,6 +26,21 @@ class ServiceController extends AbstractController
     }
 
     /**
+     * @Route("/birthday", name="admin_service_birthday", methods={"GET"})
+     */
+    public function index2(ServiceRepository $serviceRepository): Response
+    {
+        $today = new \DateTime('now');
+        $thirtyday =  date_format('Y-m-d', $today);
+
+        dd($today, $thirtyday);
+
+        return $this->render('admin/service/index.html.twig', [
+            'services' => $serviceRepository->findAll(),
+        ]);
+    }
+
+    /**
      * @Route("/new", name="admin_service_new", methods={"GET","POST"})
      */
     public function new(Request $request): Response
@@ -92,12 +107,5 @@ class ServiceController extends AbstractController
         return $this->redirectToRoute('admin_service_index');
     }
 
-    /**
-     * Liste les services arrivant à terme dans les Trente jours
-     * Route("/birthday", name="admin_service_30days")
-     */
-    public function listServiceBirthday()
-    {
 
-    }
 }

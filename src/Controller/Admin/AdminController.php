@@ -30,8 +30,6 @@ class AdminController extends AbstractController
         $services = $this->getDoctrine()->getRepository(Service::class)->findAll();
         // Je récupère la liste des facture depuis l'entité facture
         $factures = $this->getDoctrine()->getRepository(Facture::class)->findAll();
-        // Requete des services arrivant a termes d'ici un mois
-        $endonemonth = $this->getDoctrine()->getRepository(Service::class)->ListServicesEnd();
 
         return $this->render('admin/admin/dashboard.html.twig',[
             'clients' => $clients,
