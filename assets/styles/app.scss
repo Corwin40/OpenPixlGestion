@@ -12,6 +12,7 @@ $op-primary: darken(#428bca, 20%);
 @import 'include/header';
 @import 'include/body';
 @import 'include/content';
+@import 'include/dashboard';
 //*** ------------- Import mixins ---------------- ***//
 @import "include/mixins/fontface";
 @include fontface('CerebriSans-light', '../../fonts/CerebriSans-Light', 300, normal);

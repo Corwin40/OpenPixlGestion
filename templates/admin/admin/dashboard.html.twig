@@ -54,6 +54,38 @@
                 </div>
             </div>
         </div>
+        <div class="row" id="row-card">
+            <div class="col-md-3">
+                <div class="card-counter primary">
+                    <i class="fas fa-users"></i>
+                    <span class="count-numbers">{{ services|length }}</span>
+                    <span class="count-name">Services</span>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card-counter danger">
+                    <i class="fas fa-concierge-bell"></i>
+                    <span class="count-numbers">599</span>
+                    <span class="count-name">Instances</span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card-counter success">
+                    <i class="fa fa-database"></i>
+                    <span class="count-numbers">6875</span>
+                    <span class="count-name">Data</span>
+                </div>
+            </div>
+
+            <div class="col-md-3">
+                <div class="card-counter info">
+                    <i class="fa fa-users"></i>
+                    <span class="count-numbers">35</span>
+                    <span class="count-name">Users</span>
+                </div>
+            </div>
+        </div>
         {{ render(controller('App\\Controller\\Admin\\ServiceController::listbirtthday')) }}
     </section>
 {% endblock %}
