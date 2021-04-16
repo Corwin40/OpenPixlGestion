@@ -31,6 +31,7 @@ class ClientController extends AbstractController
     public function new(Request $request): Response
     {
         $client = new Client();
+        $client->setClientUniq(bin2hex(openssl_random_pseudo_bytes(10)));
         $form = $this->createForm(ClientType::class, $client);
         $form->handleRequest($request);
 
@@ -83,7 +84,7 @@ class ClientController extends AbstractController
      */
     public function delete(Request $request, Client $client): Response
     {
-        if ($this->isCsrfTokenValid('delete'.$client->getId(), $request->request->get('_token'))) {
+        if ($this->isCsrfTokenValid('delete' . $client->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->remove($client);
             $entityManager->flush();

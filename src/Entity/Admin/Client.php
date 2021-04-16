@@ -104,6 +104,11 @@ class Client
      */
     private $nameSociety;
 
+    /**
+     * @ORM\Column(type="string", length=255)
+     */
+    private $clientUniq;
+
     public function __construct()
     {
         $this->services = new ArrayCollection();
@@ -330,6 +335,18 @@ class Client
     public function setNameSociety(string $nameSociety): self
     {
         $this->nameSociety = $nameSociety;
+
+        return $this;
+    }
+
+    public function getClientUniq(): ?string
+    {
+        return $this->clientUniq;
+    }
+
+    public function setClientUniq(string $clientUniq): self
+    {
+        $this->clientUniq = $clientUniq;
 
         return $this;
     }

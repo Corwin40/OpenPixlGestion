@@ -11,10 +11,10 @@ class UserFixtures extends Fixture
 {
     private $passwordEncoder;
 
-     public function __construct(UserPasswordEncoderInterface $passwordEncoder)
-     {
-         $this->passwordEncoder = $passwordEncoder;
-     }
+    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    {
+        $this->passwordEncoder = $passwordEncoder;
+    }
 
     public function load(ObjectManager $manager)
     {
@@ -26,6 +26,8 @@ class UserFixtures extends Fixture
             '12345678'
         ));
         $user->setRoles(array('ROLE_ADMIN'));
+        $user->setFirstName('Xavier');
+        $user->setLastName('BURKE');
         $user->setCreatedAt(new \DateTime('now'));
         $user->setUpdatedAt(new \DateTime('now'));
         $manager->persist($user);
@@ -38,6 +40,8 @@ class UserFixtures extends Fixture
             '12345678'
         ));
         $user2->setRoles(array('ROLE_ADMIN'));
+        $user->setFirstName('Guillaume');
+        $user->setLastName('JANSEN');
         $user2->setCreatedAt(new \DateTime('now'));
         $user2->setUpdatedAt(new \DateTime('now'));
         $manager->persist($user2);
