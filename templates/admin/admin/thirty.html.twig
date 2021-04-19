@@ -1,19 +1,33 @@
-<table>
-    <thead>
-        <tr>
-            <th>Nom de service</th>
-        </tr>
-    </thead>
-    <tbody>
-{% for listbirthday in listbirthdays %}
-    <tr>
-        <td>{{ listbirthday.nameService }}</td>
-    </tr>
-{% else %}
-    <tr>
-        <td colspan="1"><b>Aucun services à terme dans les trente jours</b></td>
-    </tr>
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h4 class="card-title">Services</h4>
+                </div>
+                <div class="card-body">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Nom de service</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for listbirthday in listbirthdays %}
+                            <tr>
+                                <td>{{ listbirthday.nameService }}</td>
+                            </tr>
+                        {% else %}
+                            <tr>
+                                <td colspan="1">Aucun services à terme dans les trente jours</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
 
-{% endfor %}
-    </tbody>
-</table>
+        </div>
+    </div>
+
+</section>
