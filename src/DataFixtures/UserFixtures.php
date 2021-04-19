@@ -31,20 +31,20 @@ class UserFixtures extends Fixture
         $user->setCreatedAt(new \DateTime('now'));
         $user->setUpdatedAt(new \DateTime('now'));
         $manager->persist($user);
-        $manager->flush();
 
-        $user2 = new User();
-        $user2->setEmail('guillaume.jsn57@gmail.com');
-        $user2->setPassword($this->passwordEncoder->encodePassword(
-            $user2,
+
+        $user = new User();
+        $user->setEmail('guillaume.jsn57@gmail.com');
+        $user->setPassword($this->passwordEncoder->encodePassword(
+            $user,
             '12345678'
         ));
-        $user2->setRoles(array('ROLE_ADMIN'));
+        $user->setRoles(array('ROLE_ADMIN'));
         $user->setFirstName('Guillaume');
         $user->setLastName('JANSEN');
-        $user2->setCreatedAt(new \DateTime('now'));
-        $user2->setUpdatedAt(new \DateTime('now'));
-        $manager->persist($user2);
+        $user->setCreatedAt(new \DateTime('now'));
+        $user->setUpdatedAt(new \DateTime('now'));
+        $manager->persist($user);
         $manager->flush();
     }
 }

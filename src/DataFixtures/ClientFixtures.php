@@ -15,8 +15,11 @@ class ClientFixtures extends Fixture
         {
             $client = new Client();
             $client->setNameSociety('Société '.$i);
-            $client->setFirstName('Société '.$i);
-            $client->setLastName('Société '.$i);
+            $client->setFirstName('prenom '.$i);
+            $client->setLastName('Nom '.$i);
+            $client->setEmail('contact'.$i.'@client.fr');
+            $client->setPhoneDesk('05.58.65.54.43');
+            $client->setClientUniq(bin2hex(openssl_random_pseudo_bytes(10)));
             $manager->persist($client);
         }
         $manager->flush();
