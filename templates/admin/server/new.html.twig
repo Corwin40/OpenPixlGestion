@@ -7,20 +7,10 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body">
+                    <div class="card-header">
                         <h1>Ajouter un serveur</h1>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
-                    <h1>Nouveau Serveur</h1>
-
                     {{ include('admin/server/_form.html.twig') }}
-
-                    <a href="{{ path('admin_server_index') }}">Retour à la liste</a>
                 </div>
             </div>
         </div>

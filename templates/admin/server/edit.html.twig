@@ -7,20 +7,16 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
-                    <h1>Modifier le serveur</h1>
+                <div class="card-header">
+                    <h3>Modifier le serveur</h3>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-            {{ include('admin/server/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-
-            <a href="{{ path('admin_server_index') }}">Retour à la liste</a>
-
-            {{ include('admin/server/_delete_form.html.twig') }}
+                <div class="card-body">
+                    {{ include('admin/server/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+                </div>
+                <div class="card-footer">
+                    <a href="{{ path('admin_server_index') }}"><i class="fas fa-angle-double-left"></i> Retour à la liste</a>
+                    {{ include('admin/server/_delete_form.html.twig') }}
+                </div>
             </div>
         </div>
     </div>

@@ -15,9 +15,28 @@ class ServerType extends AbstractType
     {
         $builder
             ->add('name')
-            ->add('cfgProc')
-            ->add('cfgMem')
-            ->add('cfgDrive')
+            ->add('cfgProc', ChoiceType::class, [
+                'choices' => [
+                    '1 coeur' => 1,
+                    '2 coeurs' => 2,
+                    '4 coeurs' => 3,
+                ],
+            ])
+            ->add('cfgMem', ChoiceType::class, [
+                'choices' => [
+                    '1Gb' => 1,
+                    '2Gb' => 2,
+                    '4GB' => 3,
+                ],
+            ])
+            ->add('cfgDrive', ChoiceType::class, [
+                'choices' => [
+                    '20Gb' => 20,
+                    '50Gb' => 50,
+                    '100GB' => 100,
+                    '200GB' => 200,
+                ],
+            ])
             ->add('ResInt')
             ->add('resExt')
             ->add('ResMac')
@@ -25,9 +44,9 @@ class ServerType extends AbstractType
             ->add('Role')
             ->add('os', ChoiceType::class, [
                 'choices' => [
-                    'Ubuntu 20.04' => true,
-                    'Windows 10' => true,
-                    'Windows 7' => true,
+                    'Ubuntu 20.04' => 'Ubuntu 20.04',
+                    'Windows 10' => 'Windows 10',
+                    'Windows 7' => 'Windows 7',
                 ],
             ])
             ->add('portSsh')

@@ -4,8 +4,8 @@ Cfg mem: Mémoire
 Cfg drive: Disque dur
 Res int: Ip Interne
 Res ext: Ip externe
-Res mac: MAC
-Res url: URL
+Res mac: Adresse MAC
+Res url: Nom de domaine
 Role: Rôle
 Os: Système d'exploitation
 Port ssh: Port ssh
