@@ -1,27 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Edit Client{% endblock %}
+{% block title %}Edit Client
+{% endblock %}
 
 {% block main %}
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <div class="card-body">
-                    <h1>Index client</h1>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
-                <h1>Modifier le Client</h1>
-                {{ include('admin/client/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
-                <a href="{{ path('admin_client_index') }}">Retour à la liste</a>
-                {{ include('admin/client/_delete_form.html.twig') }}
-            </div>
-        </div>
-    </div>
-</div>
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-12">
+				<div class="card">
+					<div class="card-header">
+						<h3 class="card-title">Modifier le Client</h3>
+					</div>
+						{{ include('admin/client/_form.html.twig', {'button_label': 'Mettre à jour'}) }}
+						{{ include('admin/client/_delete_form.html.twig') }}
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 {% endblock %}

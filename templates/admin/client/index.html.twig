@@ -3,19 +3,14 @@
 {% block title %}Index client{% endblock %}
 
 {% block main %}
-    <div class="container-fluid">
+    <section class="container-fluid">
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <div class="card-body">
-                        <h1>Index client</h1>
+                    <div class="card-header">
+                        <h3 class="card-title">Liste des clients</h3>
+                        <p class="card-text">Il y a actuellement {{ clients|length }} client enregistré sur la plateforme</p>
                     </div>
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-12">
-                <div class="card">
                     <table class="table">
                         <thead>
                         <tr>
@@ -38,7 +33,7 @@
                         {% for client in clients %}
                             <tr>
                                 <td>{{ client.id }}</td>
-                                <td>{{ client.nameSociety }}</td>
+                                <td><a href="{{ path('admin_client_show', {'id': client.id}) }}">{{ client.nameSociety }}</a></td>
                                 <td>{{ client.lastName}}</td>
                                 <td>{{ client.firstName }}</td>
                                 <td>{{ client.address }}</td>
@@ -51,7 +46,7 @@
                                 <td>{{ client.updatedAt ? client.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                                 <td>
                                     <a href="{{ path('admin_client_show', {'id': client.id}) }}"><i class="far fa-eye"></i></a>
-                                    <a href="{{ path('admin_client_edit', {'id': client.id}) }}"><i class="far fa-pencil-alt"></i></a>
+                                    <a href="{{ path('admin_client_edit', {'id': client.id}) }}"><i class="fas fa-user-edit"></i></a>
                                     <a href="{{ path('admin_client_delete', {'id': client.id}) }}"><i class="far fa-trash-alt"></i></a>
                                 </td>
                             </tr>
@@ -63,10 +58,26 @@
                         </tbody>
                     </table>
                     <div class="card-footer">
-                        <button type="submit" class="btn btn-primary"><a href="{{ path('admin_client_new') }}">Ajouter un client</a></button>
+                        <a class="btn btn-primary btn-sm" href="{{ path('admin_client_new') }}">Ajouter un client</a>
                     </div>
                 </div>
             </div>
         </div>
+    </section>
+
+    <div class="toast-container">
+        {% for message in app.flashes('success') %}
+        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+            <div class="toast-header">
+                <img src="..." class="rounded me-2" alt="...">
+                <strong class="me-auto">Bootstrap</strong>
+                <small class="text-muted">just now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body">
+                {{ message }}
+            </div>
+        </div>
+        {% endfor %}
     </div>
 {% endblock %}

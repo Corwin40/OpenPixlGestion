@@ -1,52 +1,91 @@
 {{ form_start(form) }}
-<div class="row">
-    <div class="col-2">
-        {{ form_label(form.lastName, 'Last name', {'label_attr': {'class':'form-label'}}) }}
-        {{ form_widget(form.lastName, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="col-3">
-        {{ form_label(form.firstName, 'First name', {'label_attr': {'class':'form-label'}}) }}
-        {{ form_widget(form.firstName, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="col-7"></div>
-    <div class="col-6">
-        {{ form_label(form.nameSociety, 'Name society', {'label_attr': {'class':'form-label'}}) }}
-        {{ form_widget(form.nameSociety, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="col-6"></div>
+<div class="card-body">
+	<div class="row">
+		<div class="col-5">
+			<h4>Information sur la structure</h4>
+			<hr>
+			<div class="row mb-1 g-1">
+				<div class="col-3">
+					<b>Nom de la structure</b>
+				</div>
+				<div class="col-9">
+					{{ form_widget(form.nameSociety, {'attr': {'class': 'form-control form-control-sm', 'placeholder':'Nom de la société'}}) }}
+				</div>
+			</div>
+			<div class="row mb-1 g-1">
+				<div class="col-3">
+					<b>{{ form_label(form.address, 'Address', {'label_attr': {'class':'form-label'}}) }}</b>
+				</div>
+				<div class="col-9">
+					{{ form_widget(form.address, {'attr': {'class': 'form-control form-control-sm', 'placeholder': '12 rue du moulin'}}) }}
+				</div>
+			</div>
 
-    <div class="col-5">
-        {{ form_label(form.address, 'Address', {'label_attr': {'class':'form-label'}}) }}
-        {{ form_widget(form.address, {'attr': {'class': 'form-control', 'placeholder': '12 rue du moulin'}}) }}
-    </div>
-    <div class="col-7"></div>
-    <div class="col-3">
-        {{ form_label(form.city, 'City', {'label_attr': {'class':'form-label'}}) }}
-        {{ form_widget(form.city, {'attr': {'class': 'form-control', 'placeholder': 'Ville'}}) }}
-    </div>
+			<div class="row mb-1 g-1">
+				<div class="col-3">
+					<b>{{ form_label(form.zipcode, 'Zipcode', {'label_attr': {'class':'form-label'}}) }} -
+						{{ form_label(form.city, 'City', {'label_attr': {'class':'form-label'}}) }}</b>
+				</div>
+				<div class="col-2">
+					{{ form_widget(form.zipcode, {'attr': {'class': 'form-control form-control-sm', 'placeholder': '40280'}}) }}
+				</div>
+				<div class="col-7">
+					{{ form_widget(form.city, {'attr': {'class': 'form-control form-control-sm', 'placeholder': 'Ville'}}) }}
+				</div>
+			</div>
 
-    <div class="col-1">
-        {{ form_label(form.zipcode, 'Zipcode', {'label_attr': {'class':'form-label'}}) }}
-        {{ form_widget(form.zipcode, {'attr': {'class': 'form-control', 'placeholder': '40280'}}) }}
-    </div>
-    <div class="col-8"></div>
-    <div class="col-3">
-        {{ form_label(form.email, 'Email', {'label_attr': {'class':'form-label'}}) }}
-        {{ form_widget(form.email, {'attr': {'class': 'form-control', 'placeholder': 'toto@gmail.com'}}) }}
-    </div>
-    <div class="col-3">
-        {{ form_label(form.phoneDesk, 'Phone desk', {'label_attr': {'class':'form-label'}}) }}
-        {{ form_widget(form.phoneDesk, {'attr': {'class': 'form-control', 'placeholder': '0558911549'}}) }}
-    </div>
-    <div class="col-6"></div>
+			<div class="row mb-1 g-1">
+				<div class="col-3">
+					<b>{{ form_label(form.email, 'Email', {'label_attr': {'class':'form-label'}}) }}</b>
+				</div>
+				<div class="col-5">
+					{{ form_widget(form.email, {'attr': {'class': 'form-control form-control-sm', 'placeholder': 'Email de la structure'}}) }}
+				</div>
+				<div class="col-4"></div>
+			</div>
 
-    <div class="col-3">
-        {{ form_label(form.imageFile, 'Image file', {'label_attr': {'class':'form-label'}}) }}
-        {{ form_widget(form.imageFile, {'attr': {'class': 'form-control'}}) }}
-    </div>
-    <div class="col-12">
-        <button type="submit" class="btn btn-primary">Enregistrer</button>
-    </div>
+			<div class="row mb-1 g-1">
+				<div class="col-3">
+					<b>{{ form_label(form.phoneDesk, 'Phone desk', {'label_attr': {'class':'form-label'}}) }}</b>
+				</div>
+				<div class="col-5">
+					{{ form_widget(form.phoneDesk, {'attr': {'class': 'form-control form-control-sm', 'placeholder': 'Email de la structure'}}) }}
+				</div>
+				<div class="col-4"></div>
+			</div>
+
+			<div class="row mb-1 g-1">
+				<div class="col-3">
+					<b>{{ form_label(form.imageFile, 'Image file', {'label_attr': {'class':'form-label'}}) }}</b>
+				</div>
+				<div class="col-6">
+					{{ form_widget(form.imageFile, {'attr': {'class': 'form-control form-control-sm'}}) }}
+				</div>
+			</div>
+
+
+		</div>
+		<div class="col-7">
+			<h4>Information sur le contact</h4>
+			<hr>
+			<div class="row mb-1 g-1">
+				<div class="col-3">
+					<b>Nom et prénom</b>
+				</div>
+				<div class="col-4">
+					{{ form_widget(form.lastName, {'attr': {'class': 'form-control form-control-sm', 'placeholder':'nom'}}) }}
+				</div>
+				<div class="col-5">
+					{{ form_widget(form.firstName, {'attr': {'class': 'form-control form-control-sm', 'placeholder':'Prénom'}}) }}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+<div class="card-footer">
+	<a class="btn btn-secondary btn-sm" href="{{ path('admin_client_index') }}"><i class="fas fa-angle-double-left"></i> Retour à la liste</a> <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
 </div>
 {{ form_rest(form) }}
 {{ form_end(form) }}

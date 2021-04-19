@@ -3,56 +3,80 @@
 {% block title %}Client{% endblock %}
 
 {% block main %}
-    <h1>Client</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ client.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom</th>
-                <td>{{ client.lastName }}</td>
-            </tr>
-            <tr>
-                <th>Prenom</th>
-                <td>{{ client.firstName }}</td>
-            </tr>
-            <tr>
-                <th>Adresse</th>
-                <td>{{ client.address }}</td>
-            </tr>
-            <tr>
-                <th>Ville</th>
-                <td>{{ client.city }}</td>
-            </tr>
-            <tr>
-                <th>Code Postal</th>
-                <td>{{ client.zipcode }}</td>
-            </tr>
-            <tr>
-                <th>Email</th>
-                <td>{{ client.email }}</td>
-            </tr>
-            <tr>
-                <th>Téléphone Bureau</th>
-                <td>{{ client.phoneDesk }}</td>
-            </tr>
-            <tr>
-                <th>Créé le</th>
-                <td>{{ client.createdAt ? client.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Modifié le</th>
-                <td>{{ client.updatedAt ? client.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('admin_client_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('admin_client_edit', {'id': client.id}) }}"></a>
-
-    {{ include('admin/client/_delete_form.html.twig') }}
+<section class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Fiche de la structure : {{ client.nameSociety }}</h3>
+                    <p class="card-text"></p>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-5">
+                            <table class="table">
+                                <tbody>
+                                <tr>
+                                    <th>Nom & prénom du contact</th>
+                                    <td>{{ client.lastName }} {{ client.firstName }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Adresse</th>
+                                    <td>
+                                        {{ client.address }}<br>{{ client.zipcode }} {{ client.city }}
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Contacts</th>
+                                    <td>
+                                        <i class="fas fa-at"></i> {{ client.email }}<br>
+                                        <i class="fas fa-phone-alt"></i> {{ client.phoneDesk }}<br>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Fiche créé le : {{ client.createdAt ? client.createdAt|date('Y-m-d') : '' }}</td>
+                                    <td>Modifié le : {{ client.updatedAt ? client.updatedAt|date('Y-m-d') : '' }}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="col-7">
+                            <h4>Services Soucrits</h4>
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer">
+                    <a class="btn btn-sm btn-secondary" href="{{ path('admin_client_index') }}"><i class="fas fa-angle-double-left"></i> Retour à la liste</a>
+                    <a class="btn btn-sm btn-primary" href="{{ path('admin_client_edit', {'id': client.id}) }}"><i class="fas fa-user-edit"></i> Modifier la fiche</a>
+                    <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#Suppr_client" data-bs-whatever="{{ client }}">
+                        supprimer
+                    </button>
+                    <div class="modal fade" id="Suppr_client" tabindex="-1" aria-labelledby="Suppr_client" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header bg-danger">
+                                    <h5 class="modal-title text-light" id="exampleModalLabel">Attention</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p class="text-danger">Vous êtes sur le point de supprimer le client : <b>{{ client.nameSociety }}</b></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                    <button type="button" class="btn btn-sm btn-danger">Supprimer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 {% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+
+{%  endblock %}

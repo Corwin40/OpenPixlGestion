@@ -63,7 +63,6 @@ class Client
     /**
      * NOTE: This is not a mapped field of entity metadata, just a simple property.
      * @Vich\UploadableField(mapping="client_image", fileNameProperty="imageName", size="imageSize")
-     * @var File|null
      * @Assert\Image(
      *     mimeTypes="image/jpeg"
      * )

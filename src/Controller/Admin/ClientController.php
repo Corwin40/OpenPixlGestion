@@ -69,6 +69,7 @@ class ClientController extends AbstractController
 
         if ($form->isSubmitted() && $form->isValid()) {
             $this->getDoctrine()->getManager()->flush();
+            $this->addFlash('success', 'Fiche du client modifiée !!');
 
             return $this->redirectToRoute('admin_client_index');
         }
