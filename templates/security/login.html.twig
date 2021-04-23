@@ -4,9 +4,6 @@
 
 {% block content %}
     <div class="col12" id="bandeau"></div>
-    {% if error %}
-        <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-    {% endif %}
     <div class="col-12 col-md-5 col-lg-6 col-xl-4 align-self-center px-lg-6 my-5">
 
         <!-- Heading -->
@@ -18,6 +15,10 @@
         <p class="text-muted text-center mb-5">
             Plateforme de suivi des services contractés.
         </p>
+
+        {% if error %}
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+        {% endif %}
 
         <!-- Form -->
         <form method="post" autocomplete="false">
