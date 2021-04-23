@@ -33,11 +33,9 @@
         </div>
     </div>
 </div>
+
 <div class="card-footer">
-    <div class="col-12">
-        <a class="btn btn-sm btn-secondary" href="{{ path('admin_service_index') }}"><i class="fas fa-angle-double-left"></i></a>
-        <button type="submit" class="btn btn-sm btn-primary">Ajouter le service</button>
-    </div>
+    <a class="btn btn-secondary btn-sm" href="{{ path('admin_service_index') }}"><i class="fas fa-angle-double-left"></i> Retour à la liste</a> <button type="submit" class="btn btn-primary btn-sm">Enregistrer</button>
 </div>
 
 {{ form_end(form) }}

@@ -8,7 +8,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h1>Index serveur</h1>
+                        <h3>Liste des serveurs</h3>
                     </div>
                 </div>
             </div>
@@ -73,9 +73,9 @@
                         {% endfor %}
                         </tbody>
                     </table>
-                <div class="card-footer">
-                    <a href="{{ path('admin_server_new') }}">Ajouter un serveur</a>
-                </div>
+                    <div class="card-footer">
+                        <a class="btn btn-primary btn-sm" href="{{ path('admin_server_new') }}">Ajouter un serveur</a>
+                    </div>
             </div>
         </div>
     </div>

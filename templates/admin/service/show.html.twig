@@ -3,36 +3,68 @@
 {% block title %}Service{% endblock %}
 
 {% block main %}
-    <h1>Service</h1>
-
-    <table class="table">
-        <tbody>
-            <tr>
-                <th>Id</th>
-                <td>{{ service.id }}</td>
-            </tr>
-            <tr>
-                <th>Nom du service</th>
-                <td>{{ service.name }}</td>
-            </tr>
-            <tr>
-                <th>Déscription</th>
-                <td>{{ service.description }}</td>
-            </tr>
-            <tr>
-                <th>Créé le</th>
-                <td>{{ service.createdAt ? service.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-            <tr>
-                <th>Modifié le</th>
-                <td>{{ service.updatedAt ? service.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
-            </tr>
-        </tbody>
-    </table>
-
-    <a href="{{ path('admin_service_index') }}">Retour à la liste</a>
-
-    <a href="{{ path('admin_service_edit', {'id': service.id}) }}"></a>
-
-    {{ include('admin/service/_delete_form.html.twig') }}
+    <section class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Fiche du service : {{ service.name }}</h3>
+                        <p class="card-text"></p>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-5">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <th>Nom du service</th>
+                                        <td>{{ service.name }}</td>
+                                    </tr>
+                                    <tr>
+                                        <th>Déscription</th>
+                                        <td>
+                                            {{ service.description }}
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>Fiche créé le : {{ service.createdAt ? service.createdAt|date('Y-m-d') : '' }}</td>
+                                        <td>Modifié le : {{ service.updatedAt ? service.updatedAt|date('Y-m-d') : '' }}</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="col-7">
+                                <h4>Clients Soucrits</h4>
+                                <hr>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-footer">
+                        <a class="btn btn-sm btn-secondary" href="{{ path('admin_service_index') }}"><i class="fas fa-angle-double-left"></i> Retour à la liste</a>
+                        <a class="btn btn-sm btn-primary" href="{{ path('admin_service_edit', {'id': service.id}) }}"><i class="fas fa-user-edit"></i> Modifier la fiche</a>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#Suppr_service" data-bs-whatever="{{ service }}">
+                            supprimer
+                        </button>
+                        <div class="modal fade" id="Suppr_service" tabindex="-1" aria-labelledby="Suppr_service" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header bg-danger">
+                                        <h5 class="modal-title text-light" id="exampleModalLabel">Attention</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p class="text-danger">Vous êtes sur le point de supprimer le service : <b>{{ service.name }}</b></p>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                        <button type="button" class="btn btn-sm btn-danger">Supprimer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 {% endblock %}
