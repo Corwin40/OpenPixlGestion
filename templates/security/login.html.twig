@@ -17,7 +17,7 @@
         </p>
 
         {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <p class="text-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</p>
         {% endif %}
 
         <!-- Form -->
