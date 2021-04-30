@@ -17,6 +17,9 @@ class ClientFixtures extends Fixture
             $client->setNameSociety('Société '.$i);
             $client->setFirstName('prenom '.$i);
             $client->setLastName('Nom '.$i);
+            $client->setAddress('rue du '.$i);
+            $client->setZipcode('40280');
+            $client->setCity('Saint Pierre du Mont');
             $client->setEmail('contact'.$i.'@client.fr');
             $client->setPhoneDesk('05.58.65.54.43');
             $client->setClientUniq(bin2hex(openssl_random_pseudo_bytes(10)));

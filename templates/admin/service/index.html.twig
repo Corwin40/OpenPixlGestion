@@ -21,7 +21,7 @@
                     <tr>
                         <th>Id</th>
                         <th>Nom</th>
-                        <th>Déscription</th>
+                        <th>Description</th>
                         <th>Crée le</th>
                         <th>Modifié le</th>
                         <th>Actions</th>
@@ -35,6 +35,13 @@
                         <td>{{ service.description }}</td>
                         <td>{{ service.createdAt ? service.createdAt|date('Y-m-d H:i:s') : '' }}</td>
                         <td>{{ service.updatedAt ? service.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                        <td>
+                            {% if service.isActive== 1 %}
+                                <a class="js-publish" href="#"><i class="far fa-check-circle text-success"></i></a>
+                            {% else %}
+                                <a class="js-publish" href="#"><i class="far fa-times-circle text-danger"></i></a>
+                            {% endif %}
+                        </td>
                         <td>
                             <a href="{{ path('admin_service_show', {'id': service.id}) }}"><i class="far fa-eye"></i></a>
                             <a href="{{ path('admin_service_edit', {'id': service.id}) }}"><i class="far fa-pencil-alt"></i></a>

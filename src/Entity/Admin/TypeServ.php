@@ -35,7 +35,7 @@ class TypeServ
     private $isDisponibility;
 
     /**
-     * @ORM\OneToMany(targetEntity=Services::class, mappedBy="TypeServ")
+     * @ORM\OneToMany(targetEntity=Service::class, mappedBy="Service")
      */
     private $services;
 
@@ -86,29 +86,29 @@ class TypeServ
     }
 
     /**
-     * @return Collection|Services[]
+     * @return Collection|Service[]
      */
     public function getServices(): Collection
     {
         return $this->services;
     }
 
-    public function addService(Services $service): self
+    public function addService(Service $service): self
     {
         if (!$this->services->contains($service)) {
             $this->services[] = $service;
-            $service->setTypeServ($this);
+            $service->setService($this);
         }
 
         return $this;
     }
 
-    public function removeService(Services $service): self
+    public function removeService(Service $service): self
     {
         if ($this->services->removeElement($service)) {
             // set the owning side to null (unless already changed)
-            if ($service->getTypeServ() === $this) {
-                $service->setTypeServ(null);
+            if ($service->getService() === $this) {
+                $service->setService(null);
             }
         }
 
