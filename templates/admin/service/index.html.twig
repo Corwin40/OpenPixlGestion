@@ -7,21 +7,17 @@
     <div class="row">
         <div class="col-12">
             <div class="card">
-                <div class="card-body">
-                    <h3>Liste des services</h3>
+                <div class="card-header">
+                    <h3 class="card-title">Liste des services</h3>
                 </div>
-            </div>
-        </div>
-    </div>
-    <div class="row">
-        <div class="col-12">
-            <div class="card">
                 <table class="table">
                 <thead>
                     <tr>
                         <th>Id</th>
                         <th>Nom</th>
                         <th>Description</th>
+                        <th>Actif</th>
+                        <th>Renouvellement</th>
                         <th>Crée le</th>
                         <th>Modifié le</th>
                         <th>Actions</th>
@@ -33,8 +29,6 @@
                         <td>{{ service.id }}</td>
                         <td>{{ service.name }}</td>
                         <td>{{ service.description }}</td>
-                        <td>{{ service.createdAt ? service.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                        <td>{{ service.updatedAt ? service.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
                         <td>
                             {% if service.isActive== 1 %}
                                 <a class="js-publish" href="#"><i class="far fa-check-circle text-success"></i></a>
@@ -42,10 +36,14 @@
                                 <a class="js-publish" href="#"><i class="far fa-times-circle text-danger"></i></a>
                             {% endif %}
                         </td>
+                        <td>{{ service.birthday|format_datetime('medium', 'none', locale='fr') }}</td>
+                        <td>{{ service.createdAt ? service.createdAt|format_datetime('medium', 'none', locale='fr') : '' }}</td>
+                        <td>{{ service.updatedAt ? service.updatedAt|format_datetime('medium', 'none', locale='fr') : '' }}</td>
+
                         <td>
                             <a href="{{ path('admin_service_show', {'id': service.id}) }}"><i class="far fa-eye"></i></a>
-                            <a href="{{ path('admin_service_edit', {'id': service.id}) }}"><i class="far fa-pencil-alt"></i></a>
-                            <a href="{{ path('admin_service_delete', {'id': service.id}) }}"><i class="far fa-trash-alt"></i></a>
+                            <a href="{{ path('admin_service_edit', {'id': service.id}) }}"><i class="fas fa-pencil-alt"></i></a>
+                            <a class="text-danger" {{ path('admin_service_delete', {'id': service.id}) }}"><i class="far fa-trash-alt"></i></a>
                         </td>
                     </tr>
                 {% else %}

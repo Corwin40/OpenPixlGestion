@@ -9,7 +9,7 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Liste des clients</h3>
-                        <p class="card-text">Il y a actuellement {{ clients|length }} client enregistré sur la plateforme</p>
+                        <p class="card-text">Il y a actuellement {% if clients|length <= 1 %}{{ clients|length }} client enregistré{% else %} {{ clients|length }} clients enregistrés{% endif %} sur la plateforme</p>
                     </div>
                     <table class="table">
                         <thead>
@@ -19,8 +19,7 @@
                             <th>Nom</th>
                             <th>Prénom</th>
                             <th>Adresse</th>
-                            <th>Ville</th>
-                            <th>Code postal</th>
+                            <th>CP / Ville</th>
                             <th>Email</th>
                             <th>Tel Bureau</th>
                             <th>Services</th>
@@ -37,13 +36,12 @@
                                 <td>{{ client.lastName}}</td>
                                 <td>{{ client.firstName }}</td>
                                 <td>{{ client.address }}</td>
-                                <td>{{ client.city }}</td>
-                                <td>{{ client.zipcode }}</td>
+                                <td>{{ client.zipcode }} {{ client.city }}</td>
                                 <td>{{ client.email }}</td>
                                 <td>{{ client.phoneDesk }}</td>
                                 <td>{{ client.services|length }}</td>
-                                <td>{{ client.createdAt ? client.createdAt|date('Y-m-d H:i:s') : '' }}</td>
-                                <td>{{ client.updatedAt ? client.updatedAt|date('Y-m-d H:i:s') : '' }}</td>
+                                <td>{{ client.createdAt ? client.createdAt|format_datetime('medium', 'none', locale='fr') : '' }}</td>
+                                <td>{{ client.updatedAt ? client.updatedAt|format_datetime('medium', 'none', locale='fr') : '' }}</td>
                                 <td>
                                     <a href="{{ path('admin_client_show', {'id': client.id}) }}"><i class="far fa-eye"></i></a>
                                     <a href="{{ path('admin_client_edit', {'id': client.id}) }}"><i class="fas fa-user-edit"></i></a>

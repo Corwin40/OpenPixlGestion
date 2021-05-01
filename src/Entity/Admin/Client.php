@@ -82,7 +82,6 @@ class Client
      */
     private $imageSize;
 
-
     /**
      * @ORM\Column(type="datetime")
      */

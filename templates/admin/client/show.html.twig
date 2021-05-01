@@ -13,6 +13,11 @@
                 </div>
                 <div class="card-body">
                     <div class="row">
+                        <div class="col-12">
+                            <img src="{{ vich_uploader_asset(client, 'imageFile') }}" alt="{{ client.imageName }}" width="25%">
+                        </div>
+                    </div>
+                    <div class="row">
                         <div class="col-5">
                             <table class="table">
                                 <tbody>
@@ -43,14 +48,37 @@
                         <div class="col-7">
                             <h4>Services Soucrits</h4>
                             <hr>
+                            {{ render(controller('App\\Controller\\Admin\\ServiceController::ListServiceClient', {'uuid': client.clientUniq})) }}
                         </div>
                     </div>
                 </div>
                 <div class="card-footer">
                     <a class="btn btn-sm btn-secondary" href="{{ path('admin_client_index') }}"><i class="fas fa-angle-double-left"></i> Retour à la liste</a>
                     <a class="btn btn-sm btn-primary" href="{{ path('admin_client_edit', {'id': client.id}) }}"><i class="fas fa-user-edit"></i> Modifier la fiche</a>
+                    {# Block pour afficher le modal d'ajout d'un service #}
+                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#add_client" data-bs-whatever="{{ client }}">
+                        <i class="fas fa-plus"></i> Ajouter un service
+                    </button>
+                    <div class="modal fade" id="add_client" tabindex="-1" aria-labelledby="Suppr_client" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h4 class="modal-title" id="exampleModalLabel"><i class="fas fa-plus"></i> Ajouter un service</h4>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <p><b>{{ client.nameSociety }}</b></p>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-sm btn-primary">Ajouter</button>
+                                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Annuler</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    {# Block pour afficher le modal suppression d'un service #}
                     <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#Suppr_client" data-bs-whatever="{{ client }}">
-                        supprimer
+                        <i class="fas fa-trash-alt"></i> supprimer
                     </button>
                     <div class="modal fade" id="Suppr_client" tabindex="-1" aria-labelledby="Suppr_client" aria-hidden="true">
                         <div class="modal-dialog">

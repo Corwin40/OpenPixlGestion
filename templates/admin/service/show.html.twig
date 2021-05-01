@@ -36,12 +36,16 @@
                             <div class="col-7">
                                 <h4>Clients Soucrits</h4>
                                 <hr>
+
                             </div>
                         </div>
                     </div>
                     <div class="card-footer">
                         <a class="btn btn-sm btn-secondary" href="{{ path('admin_service_index') }}"><i class="fas fa-angle-double-left"></i> Retour à la liste</a>
                         <a class="btn btn-sm btn-primary" href="{{ path('admin_service_edit', {'id': service.id}) }}"><i class="fas fa-user-edit"></i> Modifier la fiche</a>
+                        <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#add_service" data-bs-whatever="{{ service }}">
+                            ajouter un service
+                        </button>
                         <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#Suppr_service" data-bs-whatever="{{ service }}">
                             supprimer
                         </button>

@@ -2,9 +2,13 @@
 
 namespace App\Controller\Admin;
 
+use App\Entity\Admin\Client;
 use App\Entity\Admin\Service;
 use App\Form\Admin\ServiceType;
 use App\Repository\Admin\ServiceRepository;
+use Doctrine\ORM\EntityManager;
+use Doctrine\ORM\EntityManagerInterface;
+use phpDocumentor\Reflection\Types\This;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -79,6 +83,10 @@ class ServiceController extends AbstractController
     public function new(Request $request): Response
     {
         $service = new Service();
+        $service->setFirstreminder(0);
+        $service->setSecondreminder(0);
+        $service->setThirdreminder(0);
+        $service->setIsActive(0);
         $form = $this->createForm(ServiceType::class, $service);
         $form->handleRequest($request);
 
@@ -153,6 +161,43 @@ class ServiceController extends AbstractController
         // update la liste "foreach" avec le champs remind15 true
         // envopie d'un mail pour chaque service à terme
 
+    }
+
+    /**
+     * Lister les services par client
+     * @Route("listservices/{uuid}", name="admin_service_listbyclient")
+     */
+    public function ListServiceClient(Request $request, $uuid, EntityManagerInterface $em) : Response
+    {
+        $client = $em->getRepository(Client::class)->findOneBy(array('clientUniq' => $uuid));
+
+        $services = $em->getRepository(Service::class)->findBy(array('client' => $client->getId()));
+
+        return $this-> render('admin/service/listbyclient.html.twig', [
+            'services' => $services
+        ]);
+    }
+
+    /**
+     * Ajouter un service par json
+     * @Route("/addService/{uuid}", name="admin_service_add", methods={"POST"})
+     */
+    public function addService(Request $request, $uuid, EntityManagerInterface $em) : Response
+    {
+        $client = $em->getRepository(Client::class)->findOneBy(array('clientUniq' => $uuid));
+
+        $service = new Service();
+
+        $service->setClient($client->getId());
+        $service->setFirstreminder(0);
+        $service->setSecondreminder(0);
+        $service->setThirdreminder(0);
+        $service->setIsActive(0);
+
+        $em->persist($service);
+        $em->flush();
+
+        return $this->json(['code' => 200, 'message' => 'Service ajouté']);
     }
 
 

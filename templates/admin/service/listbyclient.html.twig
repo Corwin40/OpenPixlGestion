@@ -1,0 +1,38 @@
+{% for service in services %}
+<div id="ServClient" class="row align-items-center">
+    <div class="col-10">
+        <dl class="row g-0 m-0">
+            <dd class="col-5">
+                <dl class="row g-0 m-0">
+                    <dt class="col-4">Nom<br>Descrip.</dt>
+                    <dd class="col-8">{{ service.name }}<br>{{ service.description }}</dd>
+                </dl>
+            </dd>
+            <dd class="col-5">
+                <dl class="row g-0 m-0">
+                    <dt class="col-6">Souscription<br>Renouvellement</dt>
+                    <dd class="col-6">{{ service.createdAt|format_datetime('medium', 'none', locale='fr') }}<br>{{ service.birthday|format_datetime('medium',
+                        'none', locale='fr') }}</dd>
+                </dl>
+            </dd>
+            <dd class="col-2">
+                    En service
+                    <br>
+                    {% if service.isActive== 1 %}
+                        <a class="js-publish" href="#"><i class="far fa-check-circle text-success"></i></a>
+                    {% else %}
+                        <a class="js-publish" href="#"><i class="far fa-times-circle text-danger"></i></a>
+                    {% endif %}
+            </dd>
+        </dl>
+
+    </div>
+    <div class="col-2">
+        <a class="btn btn-sm btn-outline-secondary" href="{{ path('admin_service_show', {'id': service.id}) }}"><i class="far fa-eye"></i></a>
+        <a class="btn btn-sm btn-outline-secondary" href="{{ path('admin_service_edit', {'id': service.id}) }}"><i class="fas fa-pencil-alt"></i></a>
+        <a class="btn btn-sm btn-outline-danger" href="{{ path('admin_service_delete', {'id': service.id}) }}"><i class="far fa-trash-alt"></i></a>
+    </div>
+</div>
+{% else %}
+    <p>Le client ne possède aucun service actif actuellement.</p>
+{% endfor %}
