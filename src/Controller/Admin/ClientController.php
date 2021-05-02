@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Admin\Client;
 use App\Form\Admin\ClientType;
 use App\Repository\Admin\ClientRepository;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -18,10 +19,17 @@ class ClientController extends AbstractController
     /**
      * @Route("/", name="admin_client_index", methods={"GET"})
      */
-    public function index(ClientRepository $clientRepository): Response
+    public function index(ClientRepository $clientRepository, PaginatorInterface $paginator, Request $request): Response
     {
+        $data = $clientRepository->findAll();
+        $clients = $paginator->paginate(
+            $data,
+            $request->query->getInt('page', 1),
+            10
+        );
+
         return $this->render('admin/client/index.html.twig', [
-            'clients' => $clientRepository->findAll(),
+            'clients' => $clients,
         ]);
     }
 

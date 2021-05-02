@@ -11,46 +11,54 @@
                         <h3 class="card-title">Liste des clients</h3>
                         <p class="card-text">Il y a actuellement {% if clients|length <= 1 %}{{ clients|length }} client enregistré{% else %} {{ clients|length }} clients enregistrés{% endif %} sur la plateforme</p>
                     </div>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <th>Nom de la société</th>
-                            <th>Contact</th>
-                            <th>Adresse</th>
-                            <th>CP / Ville</th>
-                            <th>Email</th>
-                            <th>Tel Bureau</th>
-                            <th>Services</th>
-                            <th>Créé le</th>
-                            <th>Modifié le</th>
-                            <th>Actions</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        {% for client in clients %}
+                    <div class="card-body">
+                        <table class="table">
+                            <thead>
                             <tr>
-                                <td><a href="{{ path('admin_client_show', {'id': client.id}) }}">{{ client.nameSociety }}</a></td>
-                                <td>{{ client.lastName}} {{ client.firstName }}</td>
-                                <td>{{ client.address }}</td>
-                                <td>{{ client.zipcode }} {{ client.city }}</td>
-                                <td>{{ client.email }}</td>
-                                <td>{{ client.phoneDesk }}</td>
-                                <td>{{ client.services|length }}</td>
-                                <td>{{ client.createdAt ? client.createdAt|format_datetime('medium', 'none', locale='fr') : '' }}</td>
-                                <td>{{ client.updatedAt ? client.updatedAt|format_datetime('medium', 'none', locale='fr') : '' }}</td>
-                                <td>
-                                    <a href="{{ path('admin_client_show', {'id': client.id}) }}"><i class="far fa-eye"></i></a>
-                                    <a href="{{ path('admin_client_edit', {'id': client.id}) }}"><i class="fas fa-user-edit"></i></a>
-                                    <a href="{{ path('admin_client_delete', {'id': client.id}) }}"><i class="far fa-trash-alt"></i></a>
-                                </td>
+                                <th>Nom de la société</th>
+                                <th>Contact</th>
+                                <th>Adresse</th>
+                                <th>CP / Ville</th>
+                                <th>Email</th>
+                                <th>Tel Bureau</th>
+                                <th>Services</th>
+                                <th>Créé le</th>
+                                <th>Modifié le</th>
+                                <th>Actions</th>
                             </tr>
-                        {% else %}
-                            <tr>
-                                <td colspan="13">Aucun enregistrement trouvé</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    </table>
+                            </thead>
+                            <tbody>
+                            {% for client in clients %}
+                                <tr>
+                                    <td><a href="{{ path('admin_client_show', {'id': client.id}) }}">{{ client.nameSociety }}</a></td>
+                                    <td>{{ client.lastName}} {{ client.firstName }}</td>
+                                    <td>{{ client.address }}</td>
+                                    <td>{{ client.zipcode }} {{ client.city }}</td>
+                                    <td>{{ client.email }}</td>
+                                    <td>{{ client.phoneDesk }}</td>
+                                    <td>{{ client.services|length }}</td>
+                                    <td>{{ client.createdAt ? client.createdAt|format_datetime('medium', 'none', locale='fr') : '' }}</td>
+                                    <td>{{ client.updatedAt ? client.updatedAt|format_datetime('medium', 'none', locale='fr') : '' }}</td>
+                                    <td>
+                                        <a href="{{ path('admin_client_show', {'id': client.id}) }}"><i class="far fa-eye"></i></a>
+                                        <a href="{{ path('admin_client_edit', {'id': client.id}) }}"><i class="fas fa-user-edit"></i></a>
+                                        <a href="{{ path('admin_client_delete', {'id': client.id}) }}"><i class="far fa-trash-alt"></i></a>
+                                    </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="13">Aucun enregistrement trouvé</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                        {# module de pagintaion hérité de KnpPaginator #}
+                        <div class="navigation">
+                            {# Ajout du template personnalisé pour la pagination en fin du block #}
+                            {{ knp_pagination_render(clients, 'base/pagination.html.twig') }}
+                        </div>
+                    </div>
+
                     <div class="card-footer">
                         <a class="btn btn-primary btn-sm" href="{{ path('admin_client_new') }}">Ajouter un client</a>
                     </div>
