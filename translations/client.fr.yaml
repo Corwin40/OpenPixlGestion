@@ -10,3 +10,8 @@ Created at: Créé le
 Updated at: Modifié le
 services: Services
 Image file: Logo de la societé
+vich_uploader:
+  form_label:
+    delete_confirm: Supprimer
+  link:
+    download: Télécharger

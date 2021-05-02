@@ -17,13 +17,19 @@ class TypeServFixtures extends Fixture
         $manager->persist($typeserv);
 
         $typeserv = new TypeServ();
-        $typeserv->setName('site');
+        $typeserv->setName('Symfony5');
         $typeserv->setPrice('99.99 ');
         $typeserv->setIsDisponibility(1);
         $manager->persist($typeserv);
 
         $typeserv = new TypeServ();
-        $typeserv->setName('wp');
+        $typeserv->setName('Wordpress');
+        $typeserv->setPrice('99.99 ');
+        $typeserv->setIsDisponibility(1);
+        $manager->persist($typeserv);
+
+        $typeserv = new TypeServ();
+        $typeserv->setName('Grav');
         $typeserv->setPrice('99.99 ');
         $typeserv->setIsDisponibility(1);
         $manager->persist($typeserv);
