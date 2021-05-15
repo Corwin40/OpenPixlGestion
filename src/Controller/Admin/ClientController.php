@@ -101,4 +101,19 @@ class ClientController extends AbstractController
 
         return $this->redirectToRoute('admin_client_index');
     }
+
+    /**
+     * @Route("/suppr/{id}", name="admin_client_suppr", methods={"GET"})
+     */
+    public function suppr(Client $client, Request $request) : Response
+    {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($client);
+        $em->flush();
+
+        return $this->json([
+            'code'=> 200,
+            'message' => 'Le Client a étét correctement supprimé de la base de donnée.'
+        ], 200);
+    }
 }

@@ -42,7 +42,7 @@
                                     <td>
                                         <a href="{{ path('admin_client_show', {'id': client.id}) }}"><i class="far fa-eye"></i></a>
                                         <a href="{{ path('admin_client_edit', {'id': client.id}) }}"><i class="fas fa-user-edit"></i></a>
-                                        <a href="{{ path('admin_client_delete', {'id': client.id}) }}"><i class="far fa-trash-alt"></i></a>
+                                        <a type="button" data-bs-toggle="modal" data-bs-target="#supprRowModal" class="text-danger" data-bs-whatever="{{ client.id }}, {{ client.nameSociety }}"><i class="far fa-trash-alt"></i></>
                                     </td>
                                 </tr>
                             {% else %}
@@ -67,9 +67,27 @@
         </div>
     </section>
 
+    <!-- Modal -->
+    <div class="modal fade" id="supprRowModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-danger" id="exampleModalLabel">Attention</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Vous êtes sur le point de supprimer la ligne :</p>
+                </div>
+                <div class="modal-footer">
+                    <a class="js-trash btn btn-sm btn-primary">Supprimer</a>
+                    <button type="button" class="btn btn-sm btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div class="toast-container">
-        {% for message in app.flashes('success') %}
-        <div class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+        <div id="toast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
             <div class="toast-header">
                 <img src="..." class="rounded me-2" alt="...">
                 <strong class="me-auto">Bootstrap</strong>
@@ -77,9 +95,52 @@
                 <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
             </div>
             <div class="toast-body">
-                {{ message }}
+
             </div>
         </div>
-        {% endfor %}
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script type="text/javascript">
+        var supprRowModal = document.getElementById('supprRowModal')
+        supprRowModal.addEventListener('show.bs.modal', function (event) {
+            // Button that triggered the modal
+            var button = event.relatedTarget
+            // Extract info from data-bs-* attributes
+            var recipient = button.getAttribute('data-bs-whatever').split(',')
+            var id = recipient[0]
+            var name = recipient[1]
+            var modalBodyP = supprRowModal.querySelector('.modal-body p')
+            var modalFooterA = supprRowModal.querySelector('.modal-footer a')
+
+            modalBodyP.textContent = 'Vous êtes sur le point de supprimer le client suivant : ' + name
+            modalFooterA.href = '/admin/client/suppr/'+ id
+        })
+
+        // Ecriture de la function en dehors de l'appel.
+        function onClickBtnTrash(event)
+        {
+            event.preventDefault();     // Stop tout effet sur la page
+            const url = this.href;      // récupère l'url stocké sur la balise a
+            var Toast = new bootstrap.Toast(document.querySelector('#toast'), {
+                autohide: false
+            });
+            axios
+                .get(url)
+                .then(function(response)
+                {
+                    Toast.show();
+                    alert(response.data.message);
+                })
+        }
+
+        // Appel de la fonction lors du clic sur le bouton Ismenu
+        document.querySelectorAll('a.js-trash').forEach(function (link){
+            link.addEventListener('click', onClickBtnTrash);
+
+        })
+
+    </script>
 {% endblock %}
